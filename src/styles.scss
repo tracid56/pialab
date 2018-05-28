@@ -25,6 +25,8 @@ $fa-font-path: "../node_modules/font-awesome/fonts";
 @import "./assets/stylesheets/editor";
 @import "./assets/stylesheets/print";
 @import "./assets/stylesheets/header";
+@import "./assets/stylesheets/timeline";
+@import "./assets/stylesheets/dashboard-card";
 
 @-moz-document url-prefix() {
   .pia-gaugeBlock-user-choice {
