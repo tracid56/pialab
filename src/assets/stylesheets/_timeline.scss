@@ -2,7 +2,7 @@ $timeline-color: $pia-blue;
 $timeline-color-future: $pia-red;
 $timeline-transition: all 0.25s ease-in;
 $timeline-item-card-bg: $white;
-$timeline-item-font-color: $white;
+$timeline-item-font-color: $black;
 $timeline-item-card: true;
 $timeline-item-card-radius: 10px;
 
@@ -79,7 +79,7 @@ $timeline-item-card-radius: 10px;
     }
 
     .timeline-content {
-      padding: 5px;
+      padding: 10px;
       text-align: right;
       -webkit-box-shadow: 1px 1px 15px 1px #d2d2d2;
       box-shadow: 1px 1px 15px 1px #d2d2d2;
@@ -87,7 +87,7 @@ $timeline-item-card-radius: 10px;
       width: 45%;
       @if $timeline-item-card == true {
         background: $timeline-item-card-bg;
-        border-radius: $timeline-item-card-radius;
+        
 
         p {
           color: $black;
