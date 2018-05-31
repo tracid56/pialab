@@ -1,5 +1,5 @@
 import { Component, Renderer2, Pipe, PipeTransform } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { KnowledgeBaseService } from 'app/entry/knowledge-base/knowledge-base.service';
@@ -32,7 +32,7 @@ export class Nl2brPipe implements PipeTransform {
 export class AppComponent {
   constructor(
     private _renderer: Renderer2,
-    private _http: Http,
+    private _http: HttpClient,
     private _knowledgeBaseService: KnowledgeBaseService,
     private _languagesService: LanguagesService,
     private permissionsService: PermissionsService
@@ -64,6 +64,7 @@ export class AppComponent {
       */
 
     this.permissionsService.loadRolesAndPermissions({
+      'ROLE_USER': [],
       'ROLE_CONTROLLER': [
         'CanEditPIA', 'CanCancelEvaluatePIA',
         'AccessToContextSection', 'AccessToPrinciplesSection', 'AccessToRisksSection'
@@ -80,6 +81,7 @@ export class AppComponent {
         'CanDeletePIA', 'CanExportPIA',
         'AccessToContextSection', 'AccessToPrinciplesSection', 'AccessToRisksSection', 'AccessToValidationSection'
       ],
+      'ROLE_SUPER_ADMIN': []
     });
 
   }
