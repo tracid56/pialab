@@ -8,7 +8,7 @@
           <h1>{{ 'help.title' | translate }}</h1>
           <a class="pia-icons pia-icon-close-big" routerlink="/home" title="{{ 'pia.sections.homepage_link' | translate }}" href="#/home"></a>
         </div>
-        <div *ngFor="let data of tableOfTitles">
+        <!-- <div *ngFor="let data of tableOfTitles">
           <div class="pia-sectionBlock-title">
             {{data[0]}}
             <hr>
@@ -18,11 +18,317 @@
               <a href="javascript:;" (click)="getAnchor($event, subTitle);">{{ subTitle }}</a>
             </li>
           </ul>
-        </div>
+        </div> -->
       </aside>
     </div>
     <div class="small-12 medium-9 columns">
-      <div class="pia-helpBlock-content" [innerHTML]="content"></div>
+      <div class="pia-helpBlock-content">
+        <h2>{{ 'help.title' | translate }}</h2>
+
+        <p>{{ 'help.manage.content' | translate }}</p>
+
+        <h3>{{ 'help.manage.edit.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 00 Dashboard 00 - Editer Info PIA.png" alt="">
+            </td>
+            <td>{{ 'help.manage.edit.content' | translate }}</td>
+          </tr>
+        </table>
+
+        <h3>{{ 'help.manage.duplicate.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 00 Dashboard 01 - Dupliquer PIA.png" alt="">
+            </td>
+            <td>
+              {{ 'help.manage.duplicate.content.first' | translate }}
+              <ul>
+                <li>{{ 'help.manage.duplicate.content.second' | translate }}</li>
+                <li>{{ 'help.manage.duplicate.content.third' | translate }}</li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+
+        <h3>{{ 'help.manage.export.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 00 Dashboard 02 - Exporter PIA.png" alt="">
+            </td>
+            <td>{{ 'help.manage.export.content' | translate }}</td>
+          </tr>
+        </table>
+
+        <h3>{{ 'help.manage.import.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 00 Dashboard 03 - Importer PIA.png" alt="">
+            </td>
+            <td>
+              {{ 'help.manage.import.content.first' | translate }}
+              <ul>
+                <li>{{ 'help.manage.import.content.first' | translate }}</li>
+                <li>{{ 'help.manage.import.content.second' | translate }}</li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+
+        <h3>{{ 'help.manage.report.export.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 00 Dashboard 04 - Exporter Rappor2018-02-23 00 Dashboard t.png" alt="">
+            </td>
+            <td>
+              {{ 'help.manage.report.export.content.first' | translate }}
+              <ul>
+                <li>{{ 'help.manage.report.export.content.first' | translate }}</li>
+                <li>{{ 'help.manage.report.export.second' | translate }}</li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+
+        <h3>{{ 'help.manage.report.print.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 00 Dashboard 05 - Imprimer Rapport.png" alt="">
+            </td>
+            <td>
+              {{ 'help.manage.report.print.content' | translate }}
+            </td>
+          </tr>
+        </table>
+
+        <h2>{{ 'help.edit.title' | translate }}</h2>
+
+        <p>{{ 'help.edit.content' | translate }}</p>
+
+        <h3>{{ 'help.edit.create.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 01 Edit 01 - CrÇer PIA.png" alt="">
+            </td>
+            <td>
+              {{ 'help.edit.create.content.first' | translate }}
+              <ul>
+                <li>{{ 'help.edit.create.content.second' | translate }}</li>
+                <li>{{ 'help.edit.create.content.third' | translate }}</li>
+              </ul>
+              {{ 'help.edit.create.content.fourth' | translate }}
+            </td>
+          </tr>
+        </table>
+
+        <h3>{{ 'help.edit.text_field.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 01 Edit 02 - Remplir un champ.png" alt="">
+            </td>
+            <td>{{ 'help.edit.text_field.content' | translate }}</td>
+          </tr>
+        </table>
+
+        <h3>{{ 'help.edit.comments.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 01 Edit 02 - Remplir un champ.png" alt="">
+            </td>
+            <td>
+              {{ 'help.edit.comments.content' | translate }}
+            </td>
+          </tr>
+        </table>
+
+        <h3>{{ 'help.edit.knowledge.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 01 Edit 09 - Base de Connaissances - filter.png" alt="">
+            </td>
+            <td>{{ 'help.edit.knowledge.content' | translate }}</td>
+          </tr>
+        </table>
+
+        <h3>{{ 'help.edit.attachments.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 01 Edit 11 - Ajout de piäce-jointe.png" alt="">
+            </td>
+            <td>{{ 'help.edit.attachments.content' | translate }}</td>
+          </tr>
+        </table>
+
+        <h3>{{ 'help.edit.measures.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 01 Edit 04 - Ajout de mesures.png" alt="">
+            </td>
+            <td>
+              {{ 'help.edit.measures.content.first' | translate }}
+              <ul>
+                <li>{{ 'help.edit.measures.content.second' | translate }}</li>
+                <li>{{ 'help.edit.measures.content.third' | translate }}</li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+
+        <h3>{{ 'help.edit.risks.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 01 Edit 05 - Editer un risque - tag.png" alt="">
+              <img src="./assets/images/help/en/2018-02-23 01 Edit 06 - Editer un risque -mesure.png" alt="">
+              <img src="./assets/images/help/en/2018-02-23 01 Edit 07 - Editer un risque - jauge.png" alt="">
+            </td>
+            <td>{{ 'help.edit.risks.content' | translate }}</td>
+          </tr>
+        </table>
+
+        <h3>{{ 'help.edit.risk_overview.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 01 Edit 08 - Vue d_ensemble des risques.png" alt="">
+            </td>
+            <td>{{ 'help.edit.risk_overview.content' | translate }}</td>
+          </tr>
+        </table>
+
+        <h2>{{ 'help.evaluate.title' | translate }}</h2>
+
+        <p>{{ 'help.evaluate.content' | translate }}</p>
+
+        <h3>{{ 'help.evaluate.to_correct.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 02 Eval 01 - A corriger.png" alt="">
+            </td>
+            <td>{{ 'help.evaluate.to_correct.content' | translate }}</td>
+          </tr>
+        </table>
+
+        <h3>{{ 'help.evaluate.improvable.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 02 Eval 02 - Ameliorable.png" alt="">
+            </td>
+            <td>{{ 'help.evaluate.improvale.content' | translate }}</td>
+          </tr>
+        </table>
+
+        <h3>{{ 'help.evaluate.acceptable.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 02 Eval 03 - Acceptable.png" alt="">
+            </td>
+            <td>{{ 'help.evaluate.acceptable.content' | translate }}</td>
+          </tr>
+        </table>
+
+        <h3>{{ 'help.evaluate.opinions.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 02 Eval 04 - Avis du DPO.png" alt="">
+            </td>
+            <td>{{ 'help.evaluate.opinions.content' | translate }}</td>
+          </tr>
+        </table>
+
+        <h2>{{ 'help.validate.title' | translate }}</h2>
+
+        <p>{{ 'help.validate.content' | translate }}</p>
+
+        <h3>{{ 'help.validate.risk_mapping.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 03 Validation 01 - Cartographie des risques.png" alt="">
+            </td>
+            <td>{{ 'help.validate.risk_mapping.content' | translate }}</td>
+          </tr>
+        </table>
+
+        <h3>{{ 'help.validate.action_plan.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 03 Validation 02 - Plan Action.png" alt="">
+            </td>
+            <td>{{ 'help.validate.action_plan.content' | translate }}</td>
+          </tr>
+        </table>
+
+        <h3>{{ 'help.validate.reject.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 03 Validation 03 - Refus Validation.png" alt="">
+            </td>
+            <td>{{ 'help.validate.reject.content' | translate }}</td>
+          </tr>
+        </table>
+
+        <h3>{{ 'help.validate.approve.signed.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 03 Validation 04 - Validation avec signature.png" alt="">
+            </td>
+            <td>{{ 'help.validate.approve.signed.content' | translate }}</td>
+          </tr>
+        </table>
+
+        <h3>{{ 'help.validate.approve.direct.title' | translate }}</h3>
+
+        <table>
+          <tr>
+            <td>
+              <img src="./assets/images/help/en/2018-02-23 03 Validation 05 - Validation simple.png" alt="">
+            </td>
+            <td>{{ 'help.validate.approve.direct.content' | translate }}</td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </main>

@@ -20,25 +20,7 @@ export class HelpComponent implements OnInit, OnDestroy {
               private _translateService: TranslateService) {}
 
   ngOnInit() {
-    const language = this._translateService.currentLang;
-    let fileTranslation = language  === 'fr' ? 'fr' : 'en';
-    let file = `./assets/files/pia_help_${fileTranslation}.html`;
-
-
-    this.http.get<string>(file).subscribe(data => {
-      this.content = data;
-      this.getSectionList();
-    });
-
-
-    this.helpSubscription = this._translateService.onLangChange.subscribe((event: LangChangeEvent) => {
-      fileTranslation = event['lang'] === 'fr' ? 'fr' : 'en';
-      file = `./assets/files/pia_help_${fileTranslation}.html`;
-      this.http.get<string>(file).subscribe(data => {
-        this.content = data;
-        this.getSectionList();
-      });
-    });
+    //this.getSectionList();
 
     window.onscroll = function(ev) {
       if (window.innerWidth > 640) {
