@@ -49,7 +49,7 @@
           <div class="pia-filtersBlock-filters-list">
             <ul>
               <li>
-                <button name="create-pia-btn" (click)="_modalsService.openModal('modal-list-new-pia')">{{ 'homepage.filters.new_pia' | translate }}</button>
+                <button name="create-pia-btn" (click)="openNewPiaModal()">{{ 'homepage.filters.new_pia' | translate }}</button>
               </li>
               <li >
                 <button name="create-from-tpl-btn" routerLink="/templates">{{ 'homepage.filters.new_from_template' | translate }}</button>

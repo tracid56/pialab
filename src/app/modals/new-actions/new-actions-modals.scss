@@ -1,0 +1,32 @@
+@import '../../../assets/stylesheets/variables';
+
+// Create new pia from list
+#new-pia-modal {
+  .pia-modalBlock {
+    &-close {
+      top: 6px;
+      right: 9px;
+    }
+    &-content {
+      width: 274px;
+      margin-left: -137px;
+      padding: 10px;
+      border: solid 1px $pia-green;
+    }
+  }
+  .pia-cardsBlock-item {
+    &-form {
+      text-align: left;
+    }
+    &-status {
+      display: flex;
+      justify-content: space-between;
+      &-infos {
+        width: auto;
+      }
+    }
+  }
+  .pia-modalBlock-content {
+    height: 386px;
+  }
+}

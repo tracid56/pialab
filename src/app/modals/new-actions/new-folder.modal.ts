@@ -32,7 +32,7 @@ import { PiaService } from 'app/entry/pia.service';
 </div>
 
 `,
-    styleUrls: [],
+    styleUrls: ['./new-actions-modals.scss'],
     providers: []
 })
 

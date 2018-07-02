@@ -69,7 +69,7 @@ import { DndModule } from 'ngx-drag-drop';
 import { ModalService } from './modals/modal.service';
 import { DomService } from 'app/modals/dom.service';
 import { SimplePiaValidationModal } from 'app/entry/entry-content/validate-pia/modals/simple-pia-validation.modal';
-import { NewFolderModal } from 'app/cards/modals/new-folder.modal';
+import { NewFolderModal,  NewPiaModal} from 'app/modals/new-actions';
 
 
 
@@ -148,12 +148,15 @@ export function createTranslateLoader(http: HttpClient) {
     TemplatesComponent,
     FolderItemComponent,
     ListItemFolderComponent,
+    //modals
     SimplePiaValidationModal,
-    NewFolderModal
+    NewFolderModal,
+    NewPiaModal
   ],
   entryComponents:[
     SimplePiaValidationModal,
-    NewFolderModal
+    NewFolderModal,
+    NewPiaModal
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { KnowledgeBaseService } from 'app/entry/knowledge-base/knowledge-base.se
 import { LanguagesService } from 'app/services/languages.service';
 import { PermissionsService } from '@security/permissions.service';
 import { NgxPermissionsConfigurationService } from 'ngx-permissions';
+import { ModalService } from 'app/modals/modal.service';
 
 
 @Pipe({ name: 'safeHtml' })
@@ -37,7 +38,8 @@ export class AppComponent {
     private _knowledgeBaseService: KnowledgeBaseService,
     private _languagesService: LanguagesService,
     private permissionsService: PermissionsService,
-    private ngxPermissionsConfigurationService: NgxPermissionsConfigurationService
+    private ngxPermissionsConfigurationService: NgxPermissionsConfigurationService,
+    private modalService: ModalService
   ) {
 
     this._knowledgeBaseService.loadData(this._http);
@@ -55,7 +57,7 @@ export class AppComponent {
 
     // ngxPermissions wrapper
 
-     /*  PERMISSIONS */
+    /*  PERMISSIONS */
 
     let roles = {};
 
@@ -68,8 +70,8 @@ export class AppComponent {
     roles['ROLE_DPO'] = roles['ROLE_CONTROLLER'].concat([
       'CanCreatePIA', 'CanCreatePIAExample', 'CanShowPIA',
       'CanEvaluatePIA', 'CanValidatePIA', 'CanCancelValidatePIA',
-      'CanDeletePIA','CanImportPIA', 'CanExportPIA', 'CanCreateFolder',
-       'AccessToValidationSection'
+      'CanDeletePIA', 'CanImportPIA', 'CanExportPIA', 'CanCreateFolder',
+      'AccessToValidationSection'
     ]);
 
     roles['ROLE_ADMIN'] = [].concat(roles['ROLE_DPO']);
@@ -77,16 +79,20 @@ export class AppComponent {
     roles['ROLE_SUPER_ADMIN'] = [].concat(roles['ROLE_TECHNICAL_ADMIN']);
 
     this.permissionsService.loadRolesAndPermissions(roles);
-/*
-    this.ngxPermissionsConfigurationService.addPermissionStrategy('disable', (templateRef: TemplateRef<any>) => {
-      this._renderer.setAttribute(templateRef.elementRef.nativeElement.nextSibling, 'disabled', 'true');
-    });
+    /*
+        this.ngxPermissionsConfigurationService.addPermissionStrategy('disable', (templateRef: TemplateRef<any>) => {
+          this._renderer.setAttribute(templateRef.elementRef.nativeElement.nextSibling, 'disabled', 'true');
+        });
+    
+        this.ngxPermissionsConfigurationService.addPermissionStrategy('enable', (templateRef: TemplateRef<any>) => {
+          this._renderer.removeAttribute(templateRef.elementRef.nativeElement.nextSibling, 'disabled');
+        });
+    
+        this.ngxPermissionsConfigurationService.setDefaultOnUnauthorizedStrategy('disable');
+    */
+  }
 
-    this.ngxPermissionsConfigurationService.addPermissionStrategy('enable', (templateRef: TemplateRef<any>) => {
-      this._renderer.removeAttribute(templateRef.elementRef.nativeElement.nextSibling, 'disabled');
-    });
-
-    this.ngxPermissionsConfigurationService.setDefaultOnUnauthorizedStrategy('disable');
-*/
+  removeModal() {
+    this.modalService.destroy();
   }
 }
