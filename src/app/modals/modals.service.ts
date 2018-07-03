@@ -5,7 +5,6 @@ import { PaginationService } from 'app/entry/entry-content/pagination.service';
 @Injectable()
 export class ModalsService {
 
-
   constructor(
     private _router: Router,
     private _paginationService: PaginationService
