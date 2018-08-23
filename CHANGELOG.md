@@ -1,7 +1,71 @@
 # Change Log
 
-## [1.2.4](https://github.com/pia-lab/pialab/tree/1.2.4) (2018-07-13)
-[Full Changelog](https://github.com/pia-lab/pialab/compare/1.2.3...1.2.4)
+## [Unreleased](https://github.com/pia-lab/pialab/tree/HEAD)
+
+[Full Changelog](https://github.com/pia-lab/pialab/compare/1.3.1...HEAD)
+
+**Closed issues:**
+
+- Unable to login after last git updates [\#52](https://github.com/pia-lab/pialab/issues/52)
+
+## [1.3.1](https://github.com/pia-lab/pialab/tree/1.3.1) (2018-08-21)
+[Full Changelog](https://github.com/pia-lab/pialab/compare/1.4.2...1.3.1)
+
+**Closed issues:**
+
+- request for documentation [\#54](https://github.com/pia-lab/pialab/issues/54)
+
+**Merged pull requests:**
+
+- Fix UI [\#55](https://github.com/pia-lab/pialab/pull/55) ([PapsOu](https://github.com/PapsOu))
+
+## [1.4.2](https://github.com/pia-lab/pialab/tree/1.4.2) (2018-08-14)
+[Full Changelog](https://github.com/pia-lab/pialab/compare/1.4.1...1.4.2)
+
+## [1.4.1](https://github.com/pia-lab/pialab/tree/1.4.1) (2018-08-13)
+[Full Changelog](https://github.com/pia-lab/pialab/compare/1.4.0...1.4.1)
+
+**Merged pull requests:**
+
+- Add Pia editable fields [\#51](https://github.com/pia-lab/pialab/pull/51) ([PapsOu](https://github.com/PapsOu))
+
+## [1.4.0](https://github.com/pia-lab/pialab/tree/1.4.0) (2018-08-13)
+[Full Changelog](https://github.com/pia-lab/pialab/compare/1.3.0...1.4.0)
+
+**Merged pull requests:**
+
+- Action plan with Processing [\#50](https://github.com/pia-lab/pialab/pull/50) ([PapsOu](https://github.com/PapsOu))
+- Pia architecture + Misc fixes [\#49](https://github.com/pia-lab/pialab/pull/49) ([PapsOu](https://github.com/PapsOu))
+- Fix create PIA from template [\#48](https://github.com/pia-lab/pialab/pull/48) ([PapsOu](https://github.com/PapsOu))
+- Add Processing form contextual help [\#47](https://github.com/pia-lab/pialab/pull/47) ([PapsOu](https://github.com/PapsOu))
+- Fix PIA create form [\#46](https://github.com/pia-lab/pialab/pull/46) ([PapsOu](https://github.com/PapsOu))
+- Add processing form [\#45](https://github.com/pia-lab/pialab/pull/45) ([RomainSanchez](https://github.com/RomainSanchez))
+- Wip processing pias list [\#44](https://github.com/pia-lab/pialab/pull/44) ([PapsOu](https://github.com/PapsOu))
+- Disable list view [\#43](https://github.com/pia-lab/pialab/pull/43) ([PapsOu](https://github.com/PapsOu))
+- Wip processing list [\#40](https://github.com/pia-lab/pialab/pull/40) ([PapsOu](https://github.com/PapsOu))
+
+## [1.3.0](https://github.com/pia-lab/pialab/tree/1.3.0) (2018-08-01)
+[Full Changelog](https://github.com/pia-lab/pialab/compare/1.2.4...1.3.0)
+
+**Implemented enhancements:**
+
+- Impossible de revenir sur une demande d'évaluation d'un traitement [\#5](https://github.com/pia-lab/pialab/issues/5)
+
+**Closed issues:**
+
+- Error in build for production [\#38](https://github.com/pia-lab/pialab/issues/38)
+- Risks Mapping and Action Plan images problems [\#37](https://github.com/pia-lab/pialab/issues/37)
+
+**Merged pull requests:**
+
+- Fix navigation issue from dashboard items [\#39](https://github.com/pia-lab/pialab/pull/39) ([GlennCavarle](https://github.com/GlennCavarle))
+- Add customer portfolio management [\#36](https://github.com/pia-lab/pialab/pull/36) ([PapsOu](https://github.com/PapsOu))
+
+## [1.2.4](https://github.com/pia-lab/pialab/tree/1.2.4) (2018-07-17)
+[Full Changelog](https://github.com/pia-lab/pialab/compare/1.2.5...1.2.4)
+
+## [1.2.5](https://github.com/pia-lab/pialab/tree/1.2.5) (2018-07-17)
+[Full Changelog](https://github.com/pia-lab/pialab/compare/1.2.3...1.2.5)
 
 ## [1.2.3](https://github.com/pia-lab/pialab/tree/1.2.3) (2018-07-12)
 [Full Changelog](https://github.com/pia-lab/pialab/compare/1.2.2...1.2.3)
