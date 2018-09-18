@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { ProcessingModel } from '@api/models';
 import { ProcessingFormComponent } from './processing-form/processing-form.component';
+import { ModalsService } from '../modals/modals.service';
+import { PiaService } from '../entry/pia.service';
 
 @Component({
   selector: 'app-processing',
@@ -16,12 +18,17 @@ export class ProcessingComponent implements OnInit {
   currentSection: Section;
 
   constructor(
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    protected _modalsService: ModalsService,
+    private _piaService: PiaService
+  ) {
+  }
 
   ngOnInit() {
     this.sections = this.route.snapshot.data.sections;
     this.processing = this.route.snapshot.data.processing;
+
+    this._piaService.currentProcessing = this.processing;
 
     this.changeSection(1);
   }
