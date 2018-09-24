@@ -33,6 +33,21 @@
                     <button class="btn btn-green expanded" (click)="_modalsService.openModal('modal-list-new-pia')" *ngxPermissionsOnly="['CanCreatePIA']">
                         {{ 'processing.form.pia_section.new_pia_button' | translate }}
                     </button>
+                    <div *ngIf="processing.pias_count > 0">
+                        <ul class="pia-quick-list">
+                            <ng-container *ngFor="let pia of pias">
+                            <li 
+                                *ngIf="pia.status !== 4"
+                                [ngClass]="{'pia-archive': pia.status == 4, 'pia-doing': pia.status == 0, 'pia-refused': pia.status == 1, 'pia-valid': pia.status == 2 || pia.status == 3 }"
+                            >
+                                {{ pia.updated_at | date: 'dd/MM/yyyy' }} | {{ 'pia.statuses.' + pia.status | translate }}
+                                <a routerLink="/entry/{{pia.id}}/section/3/item/1">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                            </li>
+                            </ng-container>
+                        </ul>
+                    </div>
                 </div>
             </aside>
         </div>

@@ -213,3 +213,42 @@
     display: block;
   }
 }
+
+ul.pia-quick-list {
+  list-style-type: none;
+  padding-left: 0;
+  & > li {
+    background: $pia-full-white;
+    margin:0.5em 0;
+    box-shadow: 0 1px 2px transparentize($pia-gray,0.5);
+    padding: 0.3em 0.6em;
+    &.pia-archive,
+    &.pia-doing,
+    &.pia-refused,
+    &.pia-valid {
+      border-left-width: 4px;
+      border-left-style: solid;
+    }
+
+    &.pia-archive {
+      opacity: 0.5;
+      border-left-color: $pia-gray;
+    }
+    &.pia-doing {
+      border-left-color: $pia-green;
+    }
+    &.pia-refused {
+      border-left-color: $pia-red;
+    }
+    &.pia-valid {
+      border-left-color: $pia-blue;
+    }
+
+    & > a {
+      float: right;
+      & > i.fa {
+        color: $pia-green;
+      }
+    }
+  }
+}
