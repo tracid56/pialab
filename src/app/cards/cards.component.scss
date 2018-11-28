@@ -200,13 +200,6 @@ section {
                 padding: 0;
                 margin: 4px 0;
               }
-              &:hover {
-                &:not(.divider) {
-                  &:last-of-type {
-                    //border-radius: 0 0 10px 10px;
-                  }
-                }
-              }
             }
           }
         }
@@ -509,13 +502,7 @@ section {
 .structure-info-button {
   color: $pia-green;
   float:right;
-  &>span {
-    display:none;
-  }
   &:hover {
     color: $pia-full-white;
-    &>span {
-      display: inline;
-    }
   }
 }

@@ -5,7 +5,9 @@ import { map } from 'rxjs/operators';
 
 import { BaseService } from '@api/service/base.service';
 import { Processing } from '@api/model/processing.model';
+import { Template } from '@api/model/template.model';
 import { FolderModel } from '@api/models';
+import { Folder } from '@api/model';
 
 @Injectable()
 export class ProcessingService extends BaseService<Processing> {
@@ -16,7 +18,8 @@ export class ProcessingService extends BaseService<Processing> {
     all: '/processings',
     one: '/processings/{id}',
     export: '/processings/{id}/export',
-    import: '/processings/import'
+    import: '/processings/import',
+    template: '/processings/new-from-template/{templateId}',
   };
 
   constructor(http: HttpClient) {
@@ -62,5 +65,11 @@ export class ProcessingService extends BaseService<Processing> {
     const route = this.buildRoute(this.routing.import, {name: name});
 
     return this.http.post(route, {data: data}, { params: query }).pipe(map(res => this.mapToModel(res, this.modelClass)));
+  }
+
+
+  public createFromTemplate(model: Processing, template: Template): Observable<Processing> {
+    
+    return this.httpPost(this.routing.template, { templateId: template.id }, model);
   }
 }

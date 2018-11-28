@@ -16,7 +16,6 @@ export class PiaService extends BaseService<Pia> {
   protected routing: any = {
     all: '/pias',
     one: '/pias/{id}',
-    template: '/pias/new-from-template/{templateId}',
     export: '/pias/{id}/export',
     import: '/pias/import'
   };
@@ -28,11 +27,6 @@ export class PiaService extends BaseService<Pia> {
   public computeProgressFromAnswers(model: Pia, answers: Answer[]): number {
     model.progress = Math.round((100 / model.numberOfQuestions) * answers.length);
     return model.progress;
-  }
-
-  public createFromTemplate(model: Pia, template: Template, processing: Processing): Observable<Pia> {
-    model.processing = processing;
-    return this.httpPost(this.routing.template, { templateId: template.id }, model);
   }
 
   public getAll(criteria: any): Observable<Pia[]> {

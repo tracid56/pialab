@@ -10,7 +10,7 @@ export class TemplateService extends BaseService<Template> {
   protected modelClass = Template;
 
   protected routing: any = {
-    all: '/pia-templates'
+    all: '/processing-templates'
   };
 
   constructor(http: HttpClient) {

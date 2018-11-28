@@ -99,7 +99,7 @@
       "new": "Nouveau...",
       "new_pia": "PIA",
       "new_processing": "Traitement",
-      "new_from_template": "PIA depuis un modèle",
+      "new_from_template": "Traitement depuis un modèle",
       "new_folder": "Dossier",
       "import_pia": "Importer PIA",
       "list_rocket_content": "Lancez-vous ! Pour commencer<br>un PIA, cliquez sur le +",
@@ -146,7 +146,8 @@
         "title": "Dossier",
         "parent": "Dossier parent",
         "open": "Consulter le dossier",
-        "root": "Dossier racine"
+        "root": "Dossier racine",
+        "person_in_charge": "Responsable"
       },
       "item": {
         "tools": {
@@ -197,6 +198,15 @@
     "form": {
       "name": {
         "title": "Dénomination"
+      },
+      "executive": {
+        "title": "Dirigeant"
+      },
+      "backup": {
+        "title": "Backup dirigeant"
+      },
+      "dpo": {
+        "title": "DPO"
       },
       "address": {
         "title": "Adresse"
@@ -293,6 +303,10 @@
       "lifecycle": {
         "title": "Cycle de vie des données",
         "placeholder": "Décrivez le cycle de vie des données pour ce traitement (description fonctionnelle)"
+      },
+      "concerned_people": {
+        "title": "Personnes concernées",
+        "placeholder": "Détaillez les types de personnes concernées"
       },
       "sections": {
         "description": {
@@ -415,7 +429,7 @@
   },
   "templates": {
     "pick": "Choisir",
-    "header": "Modèles de PIA"
+    "header": "Modèles de Traitement"
   },
   "knowledge_base": {
     "title": "Base de connaissances",

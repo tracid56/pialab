@@ -69,7 +69,7 @@ export class AppComponent {
       'CanCreatePIA', 'CanCreatePIAExample', 'CanShowPIA',
       'CanEvaluatePIA', 'CanValidatePIA', 'CanCancelValidatePIA',
       'CanDeletePIA', 'CanCreateFolder',
-      'CanCreateProcessing', 'CanEditProcessing', 'CanImportProcessing', 'CanExportProcessing', 'CanShowProcessing', 'CanDeleteProcessing',
+      'CanCreateProcessing', 'CanEditProcessing', 'CanImportProcessing', 'CanShowProcessing', 'CanDeleteProcessing',
       'AccessToValidationSection',
       'CanEditStructure',
     ]);
@@ -78,7 +78,7 @@ export class AppComponent {
     roles['ROLE_ADMIN'] = [].concat(roles['ROLE_DPO']);
     roles['ROLE_TECHNICAL_ADMIN'] = [].concat(roles['ROLE_ADMIN']);
     roles['ROLE_SUPER_ADMIN'] = [].concat(roles['ROLE_TECHNICAL_ADMIN']).concat([
-      'CanImportPIA', 'CanExportPIA'
+      'CanImportPIA', 'CanExportPIA', 'CanExportProcessing'
     ]);
 
     this.permissionsService.loadRolesAndPermissions(roles);

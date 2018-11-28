@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalsService } from 'app/modals/modals.service'
-import { PiaApi } from '@api/services';
-import { PiaModel, TemplateModel } from '@api/models';
+import { ProcessingApi } from '@api/services';
+import { ProcessingModel, TemplateModel } from '@api/models';
 import { PiaService } from '../entry/pia.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-templates',
@@ -13,30 +14,47 @@ import { PiaService } from '../entry/pia.service';
 export class TemplatesComponent implements OnInit {
   public templates: TemplateModel[];
   protected pickedTemplate: TemplateModel;
-  public pia: PiaModel = new PiaModel();
+  public processing: ProcessingModel = new ProcessingModel();
+  public processingForm: FormGroup;
 
   constructor(
-    protected piaApi: PiaApi,
+    protected processingApi: ProcessingApi,
     protected router: Router,
     private route: ActivatedRoute,
-    public modalsService: ModalsService,
+    public _modalsService: ModalsService,
     private _piaService: PiaService
   ) {
   }
 
   ngOnInit() {
     this.templates = this.route.snapshot.data.templates;
+
+    this.processingForm = new FormGroup({
+      author: new FormControl(),
+      designated_controller: new FormControl()
+    });
+
+    if(this._piaService.currentFolder == null){
+      this.router.navigate(['dashboard']);
+    }
   }
 
-  onSubmit() {
-    this.piaApi.createFromTemplate(this.pia, this.pickedTemplate, this._piaService.currentProcessing).subscribe((pia: PiaModel) => {
-      this.router.navigate([`/entry/${pia.id}/section/1/item/1`]);
+  onSubmitProcessing() {
+
+    let processing = new ProcessingModel();
+    processing.author = this.processingForm.value.author;
+    processing.designated_controller = this.processingForm.value.designated_controller;
+    processing.folder = this._piaService.currentFolder;
+
+    this.processingApi.createFromTemplate(processing, this.pickedTemplate).subscribe((newProcessing: ProcessingModel) => {
+      this.processingForm.reset();
+      this.router.navigate(['processing', newProcessing.id]);
     });
   }
 
-  protected piaFromTemplate(template: TemplateModel) {
+  protected processingFromTemplate(template: TemplateModel) {
     this.pickedTemplate = template;
-    this.modalsService.openModal('modal-list-new-pia');
+    this._modalsService.openModal('modal-list-new-processing');
   }
 
 }

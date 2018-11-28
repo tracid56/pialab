@@ -73,7 +73,7 @@ h1 {
       margin-left: -220px;
       width: 440px;
       box-shadow: 15px 15px 205px -35px $pia-dark-black;
-      text-align: center;
+      text-align: left;
       color: $pia-blue;
       font-style: italic;
       font-weight: 400;
@@ -146,7 +146,7 @@ h1 {
   }
 }
 // Create new pia from list
-#modal-list-new-pia {
+#modal-list-new-processing {
   .pia-modalBlock {
     &-close {
       top: 6px;
@@ -181,7 +181,7 @@ h1 {
   }
 }
 
-#modal-list-new-pia {
+#modal-list-new-processing {
   .pia-modalBlock-content {
     height: 386px;
   }

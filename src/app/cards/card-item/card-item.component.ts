@@ -131,12 +131,31 @@ export class CardItemComponent implements OnInit {
   }
 
     /**
-   * Deletes a PIA with a given id.
-   * @param {string} id - The PIA id.
+   * Deletes a Processing with a given id.
+   * @param {string} id - The Processing id.
    * @memberof CardItemComponent
    */
   removeProcessing(id: string) {
     localStorage.setItem('processing-id', id);
     this._modalsService.openModal('modal-remove-processing');
+  }
+
+    /**
+   * Exports a Processing with a given id.
+   * @param {number} id - The Processing id.
+   * @memberof CardItemComponent
+   */
+  exportProcessing(id: number) {
+
+    const date = new Date().getTime();
+    this.processingApi.export(id).subscribe(((data) =>{
+      const a = document.createElement('a');
+      const url = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
+      a.setAttribute('href', url);
+      a.setAttribute('download','pialab_processing_' + id + '_'+ date + '.json');
+      const event = new MouseEvent('click', {view: window});
+      a.dispatchEvent(event);
+    }));
+   
   }
 }
