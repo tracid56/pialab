@@ -39,21 +39,7 @@ export class ProcessingDataTypesComponent implements ControlValueAccessor {
    */
   updateValue(reference: string, enable: boolean = false): void {
     const type = this[reference].processingDataType;
-
-    // Data type enabled no creation yet
-    if (enable) {
-      // Disabling
-      if (type.id) {
-        // Delete from server
-        this.processingDataTypeApi.delete(type).subscribe(() => {
-          // Clear model
-          this[reference].processingDataType = new ProcessingDataTypeModel();
-        });
-      }
-
-      return;
-    }
-
+console.log(type);
     // Create new
     if (!type.id) {
       // Set missing properties
@@ -66,6 +52,15 @@ export class ProcessingDataTypesComponent implements ControlValueAccessor {
       });
 
       return;
+    }
+
+    // Disable existing
+    if (enable) {
+      // Delete from server
+      this.processingDataTypeApi.delete(type).subscribe(() => {
+        // Clear model
+        this[reference].processingDataType = new ProcessingDataTypeModel();
+      });
     }
 
     // Update existing on server
