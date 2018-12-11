@@ -1,18 +1,13 @@
 import { Component, OnInit, ElementRef, OnDestroy, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-
-import { DndDropEvent } from 'ngx-drag-drop';
 
 import { ModalsService } from 'app/modals/modals.service';
 import { PiaService } from 'app/entry/pia.service';
 
-import { PiaModel, FolderModel, ProcessingModel } from '@api/models';
-import { PiaApi, FolderApi, ProcessingApi } from '@api/services';
+import { FolderModel, ProcessingModel } from '@api/models';
+import { FolderApi, ProcessingApi } from '@api/services';
 import { PermissionsService } from '@security/permissions.service';
-import { AuthenticationService } from '@security/authentication.service';
 import { ProfileSession } from '../services/profile-session.service';
 
 @Component({

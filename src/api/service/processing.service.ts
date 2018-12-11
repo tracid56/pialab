@@ -19,7 +19,7 @@ export class ProcessingService extends BaseService<Processing> {
     one: '/processings/{id}',
     export: '/processings/{id}/export',
     import: '/processings/import',
-    template: '/processings/new-from-template/{templateId}',
+    template: '/processings/new-from-template/{templateId}'
   };
 
   constructor(http: HttpClient) {
@@ -56,20 +56,22 @@ export class ProcessingService extends BaseService<Processing> {
     const route = this.buildRoute(this.routing.export, {id: id});
 
     return this.http.get(route, { params: query }).pipe(map((res: any) => {
-      return res
+      return res;
     }));
   }
 
-  public import(data: any): Observable<Processing> {
+  public import(data: any, folderId: any): Observable<Processing> {
     const query: any = this.buildQuery({});
     const route = this.buildRoute(this.routing.import, {name: name});
 
-    return this.http.post(route, {data: data}, { params: query }).pipe(map(res => this.mapToModel(res, this.modelClass)));
+    return this.http.post(
+      route,
+      {processing: data, folder_id: folderId},
+      { params: query }
+    ).pipe(map(res => this.mapToModel(res, this.modelClass)));
   }
 
-
   public createFromTemplate(model: Processing, template: Template): Observable<Processing> {
-    
     return this.httpPost(this.routing.template, { templateId: template.id }, model);
   }
 }

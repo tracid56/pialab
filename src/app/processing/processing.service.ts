@@ -110,17 +110,6 @@ export class ProcessingService {
   }
 
   /**
-   * Allow a user to duplicate a Processing.
-   * @param {number} id - Processing id.
-   * @memberof ProcessingService
-   */
-  duplicate(id: number) {
-    this.exportData(id).then((data) => {
-      this.importData(data, 'COPY', true);
-    });
-  }
-
-  /**
    * Allow an user to export a Processing.
    * @param {number} id - The Processing id.
    * @returns {Promise}
@@ -143,7 +132,7 @@ export class ProcessingService {
    * @memberof ProcessingService
    */
   async importData(data: any, prefix: string, is_duplicate: boolean, is_example?: boolean): Promise<void> {
-    this.processingApi.import(data).subscribe((processing) => {
+    this.processingApi.import(data, null).subscribe((processing) => {
       this.processings.push(processing);
     });
   }

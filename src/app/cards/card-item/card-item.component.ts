@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 
 import { PiaService } from '../../entry/pia.service';
 
-import { ProcessingModel } from '@api/models';
+import { ProcessingModel, FolderModel } from '@api/models';
 import { ProcessingApi } from '@api/services';
 import { PermissionsService } from '@security/permissions.service';
 import { ModalsService } from '../../modals/modals.service';
@@ -48,6 +48,7 @@ export class CardItemComponent implements OnInit {
     // add permission verification
     const hasPerm$ = this.permissionsService.hasPermission('CanCreateProcessing');
     hasPerm$.then((bool: boolean) => {
+      // tslint:disable-next-line:forin
       for (const field in this.processingForm.controls) {
           const fc = this.processingForm.get(field);
           bool ? fc.enable() : fc.disable();
@@ -130,7 +131,7 @@ export class CardItemComponent implements OnInit {
     }
   }
 
-    /**
+  /**
    * Deletes a Processing with a given id.
    * @param {string} id - The Processing id.
    * @memberof CardItemComponent
@@ -140,22 +141,32 @@ export class CardItemComponent implements OnInit {
     this._modalsService.openModal('modal-remove-processing');
   }
 
-    /**
+  /**
    * Exports a Processing with a given id.
    * @param {number} id - The Processing id.
    * @memberof CardItemComponent
    */
   exportProcessing(id: number) {
-
     const date = new Date().getTime();
+
     this.processingApi.export(id).subscribe(((data) =>{
       const a = document.createElement('a');
       const url = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
+      const event = new MouseEvent('click', {view: window});
+
       a.setAttribute('href', url);
       a.setAttribute('download','pialab_processing_' + id + '_'+ date + '.json');
-      const event = new MouseEvent('click', {view: window});
       a.dispatchEvent(event);
     }));
-   
+  }
+
+  /**
+   * Duplicates a Processing.
+   * @memberof CardItemComponent
+   */
+  duplicateProcessing() {
+    this.processingApi.import(this.processing.toJson(), this._piaService.currentFolder.id).subscribe((theProcessing: ProcessingModel) => {
+      this._piaService.currentFolder.processings.push(theProcessing);
+    });
   }
 }

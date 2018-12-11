@@ -12,12 +12,17 @@ export class StructureGuardService implements CanActivate {
   ) { }
 
   canActivate(): Promise<boolean> {
+    /*
+    Structure is empty when reloading the page
+    */
     return new Promise(resolve => {
-      const hasCurrentStructure = this.session.getCurrentStructure() !== null;
-      if (!hasCurrentStructure) {
-        this.router.navigate(['dashboard']);
-      }
-      resolve(hasCurrentStructure);
+      // const hasCurrentStructure = this.session.getCurrentStructure() !== null;
+      // if (!hasCurrentStructure) {
+      //   // this.router.navigate(['dashboard']);
+      // }
+      // resolve(hasCurrentStructure);
+
+      resolve(true);
     });
   }
 }

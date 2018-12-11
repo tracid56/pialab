@@ -5,11 +5,9 @@ import { AuthenticationGuardService } from '@security/authentication-guard.servi
 import { StructureGuardService } from 'app/services/structure-guard.service';
 
 const routes: Routes = [
-  
-  
   {
-  	path: 'folders',
-  	component: CardsComponent,
+    path: 'folders',
+    component: CardsComponent,
     canActivate: [AuthenticationGuardService, StructureGuardService],
   },
   {
