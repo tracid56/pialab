@@ -1,5 +1,12 @@
 @import '../../assets/stylesheets/variables';
 
+@media print {
+  #force-select-all {
+    display: block !important;
+    overflow: visible !important;
+  }
+}
+
 .pia {
   &-summaryContainerBlock {
     margin-bottom: 80px;
