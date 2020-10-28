@@ -1,70 +1,70 @@
 
-import { BaseService } from '@api/service/base.service';
+import { BaseService } from './base.service';
 import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { FolderModel } from '@api/models';
 import { Injectable } from '@angular/core';
-import { PiaModel } from '@api/models';
+import { Folder, Processing } from '../model';
 
 @Injectable()
-export class FolderService extends BaseService<FolderModel> {
+export class FolderService extends BaseService<Folder> {
 
-  protected modelClass = FolderModel;
+  protected modelClass = Folder;
 
   protected routing: any = {
-    all: '/folders',
-    one: '/folders/{id}'
+    all: '/structures/{structureId}/folders',
+    one: '/structures/{structureId}/folders/{id}'
   };
 
   constructor(http: HttpClient) {
     super(http);
   }
 
-  public getAll(): Observable<FolderModel[]> {
-    return this.httpGetAll(this.routing.all).map(folders => {
+  public getAll(structureId: string): Observable<Folder[]> {
+    return this.httpGetAll(this.routing.all, {structureId: structureId}).pipe(map(folders => {
       folders.forEach(folder => {
-        folder.pias.forEach((pia, index, pias) => {
-          pias[index] = (new PiaModel()).fromJson(pia);
+        folder.processings.forEach((processing, index, processings) => {
+          processings[index] = (new Processing()).fromJson(processing);
         });
         folder.children.forEach((child, index, children) => {
-          children[index] = (new FolderModel()).fromJson(child);
+          children[index] = (new Folder()).fromJson(child);
         });
         if (folder.parent !== null) {
-          folder.parent = (new FolderModel()).fromJson(folder.parent)
+          folder.parent = (new Folder()).fromJson(folder.parent)
         }
       });
       return folders;
-   });
+   }));
   }
 
-  public get(id: any): Observable<FolderModel> {
-    return this.httpGetOne(this.routing.one, { id: id }).map(folder => {
-      folder.pias.forEach((pia, index, pias) => {
-        pias[index] = (new PiaModel()).fromJson(pia);
+  public get(structureId: string, id: any): Observable<Folder> {
+    return this.httpGetOne(this.routing.one, {structureId: structureId, id: id }).pipe(map(folder => {
+      folder.processings.forEach((processing, index, processings) => {
+        processings[index] = (new Processing()).fromJson(processing);
       });
       folder.children.forEach((child, index, children) => {
-        children[index] = (new FolderModel()).fromJson(child);
+        children[index] = (new Folder()).fromJson(child);
       });
       if (folder.parent !== null) {
-        folder.parent = (new FolderModel()).fromJson(folder.parent)
+        folder.parent = (new Folder()).fromJson(folder.parent)
       }
       return folder;
-    });
+    }));
   }
 
-  public update(model: FolderModel): Observable<FolderModel> {
-    return this.httpPut(this.routing.one, { id: model.id }, model);
+  public update(model: Folder): Observable<Folder> {
+    return this.httpPut(this.routing.one, {structureId: model.structure_id, id: model.id }, model);
   }
 
-  public create(model: FolderModel): Observable<FolderModel> {
-    return this.httpPost(this.routing.all, {}, model);
+  public create(model: Folder): Observable<Folder> {
+    return this.httpPost(this.routing.all, {structureId: model.structure_id}, model);
   }
 
-  public deleteById(id: any): Observable<FolderModel> {
-    return this.httpDelete(this.routing.one, { id: id });
+  public deleteById(structureId: any, id: any): Observable<Folder> {
+    return this.httpDelete(this.routing.one, {structureId: structureId, id: id });
   }
 
-  public delete(model: FolderModel): Observable<FolderModel> {
-    return this.deleteById(model.id);
+  public delete(model: Folder): Observable<Folder> {
+    return this.deleteById(model.structure_id, model.id);
   }
 }

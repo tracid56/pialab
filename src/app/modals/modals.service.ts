@@ -1,6 +1,6 @@
 import {ElementRef, Injectable, Output} from '@angular/core';
 import { Router } from '@angular/router';
-import { PaginationService } from 'app/entry/entry-content/pagination.service';
+import { PaginationService } from '../entry/entry-content/pagination.service';
 
 @Injectable()
 export class ModalsService {
@@ -37,9 +37,11 @@ export class ModalsService {
       gf.focus();
     }
 
-    if(modal_id === 'modal-list-new-folder' || modal_id === 'modal-list-new-pia') {
-      const input = <HTMLInputElement>e.querySelector('input#name');
-      input.focus();
+    if(modal_id === 'modal-list-new-folder' || modal_id === 'modal-list-new-processing' || modal_id === 'modal-list-new-pia') {
+      const input = <HTMLInputElement>e.querySelector(modal_id === 'modal-list-new-pia' ? 'input#author_name' : 'input#name');
+      if (input) {
+        input.focus();
+      }
     }
   }
 

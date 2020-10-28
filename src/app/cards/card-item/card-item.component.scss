@@ -1,0 +1,50 @@
+.pia-cardsBlock-checkbox-container {
+    height: 25px;
+    display: flex;
+}
+
+.pia-cardsBlock-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.pia-cardsBlock-checkmark {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+.pia-cardsBlock-checkbox:hover input ~ .pia-cardsBlock-checkmark {
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.pia-cardsBlock-checkbox input:checked ~ .pia-cardsBlock-checkmark {
+    background-color: #0277BD;
+}
+
+.pia-cardsBlock-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.pia-cardsBlock-checkbox input:checked ~ .pia-cardsBlock-checkmark:after {
+    display: block;
+}
+
+.pia-cardsBlock-checkbox .pia-cardsBlock-checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

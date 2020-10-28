@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { PiaService } from 'app/entry/pia.service';
+import { PiaService } from '../entry/pia.service';
 import { Observable } from 'rxjs/Observable';
 
 // new imports
@@ -194,7 +194,11 @@ export class GlobalEvaluationService {
     } else if (this.answersOrMeasures.length > 0) {
 
       this.answersOrMeasures.forEach(async (answerOrMeasure) => {
-        const theEval: EvaluationModel = await this.evaluationApi.getByRef(this.pia.id, this.getAnswerReferenceTo(answerOrMeasure)).toPromise();
+        const theEval: EvaluationModel = await this.evaluationApi.getByRef(
+          this.pia.id,
+          this.getAnswerReferenceTo(answerOrMeasure)
+        ).toPromise();
+
         theEval.global_status = 1;
         await this.evaluationApi.update(theEval).toPromise();
         this.validate();

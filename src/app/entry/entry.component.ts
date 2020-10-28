@@ -2,13 +2,13 @@ import { Component, OnInit, Output, OnDestroy, DoCheck } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
-import { KnowledgeBaseService } from 'app/entry/knowledge-base/knowledge-base.service';
-import { MeasureService } from 'app/entry/entry-content/measures/measures.service';
-import { ActionPlanService } from 'app/entry/entry-content/action-plan//action-plan.service';
-import { PiaService } from 'app/entry/pia.service';
-import { ModalsService } from 'app/modals/modals.service';
-import { AppDataService } from 'app/services/app-data.service';
-import { SidStatusService } from 'app/services/sid-status.service';
+import { KnowledgeBaseService } from './knowledge-base/knowledge-base.service';
+import { MeasureService } from './entry-content/measures/measures.service';
+import { ActionPlanService } from './entry-content/action-plan/action-plan.service';
+import { PiaService } from './pia.service';
+import { ModalsService } from '../modals/modals.service';
+import { AppDataService } from '../services/app-data.service';
+import { SidStatusService } from '../services/sid-status.service';
 import { GlobalEvaluationService } from '../services/global-evaluation.service';
 
 // new import
@@ -47,6 +47,9 @@ export class EntryComponent implements OnInit, OnDestroy, DoCheck {
   async ngOnInit() {
     let sectionId = parseInt(this.route.snapshot.params['section_id'], 10);
     let itemId = parseInt(this.route.snapshot.params['item_id'], 10);
+
+    this._globalEvaluationService.answerEditionEnabled = true;
+
     this.data = await this._appDataService.getDataNav();
     this.route.params.subscribe(
       (params: Params) => {
@@ -88,7 +91,7 @@ export class EntryComponent implements OnInit, OnDestroy, DoCheck {
         questionsSet.forEach(q => {
 
           const theRefAnswer = theAnswers.find((a) => {
-            return a.reference_to == q.id;
+            return parseInt(a.reference_to, 10) === q.id;
           });
 
           if (theRefAnswer && theRefAnswer.data.list.length > 0 && theRefAnswer.data.list.includes(measureName)) {

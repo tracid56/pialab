@@ -8,7 +8,7 @@ h1 {
 
 .templates {
   .template {
-    height: 330px; 
+    height: 330px;
     padding: 10px;
     text-align: center;
 
@@ -67,13 +67,13 @@ h1 {
       position: absolute;
       top: 32.5%;
       left: 50%;
-      background-color: #fff;
+      background-color: $pia-full-white;
     }
     &-content {
       margin-left: -220px;
       width: 440px;
-      box-shadow: 15px 15px 205px -35px black;
-      text-align: center;
+      box-shadow: 15px 15px 205px -35px $pia-dark-black;
+      text-align: left;
       color: $pia-blue;
       font-style: italic;
       font-weight: 400;
@@ -146,7 +146,7 @@ h1 {
   }
 }
 // Create new pia from list
-#modal-list-new-pia {
+#modal-list-new-processing {
   .pia-modalBlock {
     &-close {
       top: 6px;
@@ -163,7 +163,8 @@ h1 {
     &-form {
       text-align: left;
     }
-    &-status {
+    &-status,
+    &-pias-number {
       display: flex;
       justify-content: space-between;
       &-infos {
@@ -176,11 +177,11 @@ h1 {
   textarea {
     width: 94%;
     height: 100px;
-    border: 1px solid #A7A7A7;
+    border: 1px solid $pia-gray;
   }
 }
 
-#modal-list-new-pia {
+#modal-list-new-processing {
   .pia-modalBlock-content {
     height: 386px;
   }

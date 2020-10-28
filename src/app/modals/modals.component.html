@@ -215,6 +215,20 @@
     </div>
 </div>
 
+<div class="pia-modalBlock" id="modal-remove-processing">
+    <div class="pia-modalBlock-content pia-modalBlock-removeProcessing bounceIn">
+        <button tabindex="3" type="button" class="pia-modalBlock-close btn" title="{{ 'modals.close' | translate }}" (click)="_modalsService.closeModal()">
+            <span class="pia-icons pia-icon-close-big"></span>
+        </button>
+        <p [innerHTML]="'modals.remove_processing.content' | translate"></p>
+        <span class="pia-icons pia-icon-sad"></span>
+        <div class="pia-modalBlock-buttons-choice">
+            <button tabindex="1" class="btn btn-red get-focus" type="button" (click)="_modalsService.closeModal()">{{ 'modals.cancel' | translate }}</button>
+            <button tabindex="2" class="btn-confirm btn btn-red" (click)="_piaService.removeProcessing()" type="button">{{ 'modals.remove_processing.remove' | translate }}</button>
+        </div>
+    </div>
+</div>
+
 <div class="pia-modalBlock" id="modal-remove-folder">
     <div class="pia-modalBlock-content pia-modalBlock-removePIA bounceIn">
         <button tabindex="3" type="button" class="pia-modalBlock-close btn" title="{{ 'modals.close' | translate }}" (click)="_modalsService.closeModal()">
@@ -242,6 +256,20 @@
         <div class="pia-modalBlock-buttons-choice">
             <button tabindex="1" class="btn btn-red get-focus" type="button" (click)="_modalsService.closeModal()">{{ 'modals.remove_attachment.keep' | translate }}</button>
             <button tabindex="2" class="btn btn-red" [disabled]="enableSubmit" (click)="_attachmentsService.removeAttachment(removeAttachmentForm.controls['comment'].value)"
+                type="button">{{ 'modals.remove_attachment.remove' | translate }}</button>
+        </div>
+    </div>
+</div>
+
+<div class="pia-modalBlock" id="modal-remove-processing-attachment">
+    <div class="pia-modalBlock-content pia-modalBlock-removeAttachment bounceIn">
+        <button tabindex="3" type="button" class="pia-modalBlock-close btn" title="{{ 'modals.close' | translate }}" (click)="_modalsService.closeModal()">
+            <span class="pia-icons pia-icon-close-big"></span>
+        </button>
+        <p [innerHTML]="'modals.remove_attachment.content' | translate"></p>
+        <div class="pia-modalBlock-buttons-choice">
+            <button tabindex="1" class="btn btn-red get-focus" type="button" (click)="_modalsService.closeModal()">{{ 'modals.remove_attachment.keep' | translate }}</button>
+            <button tabindex="2" class="btn btn-red" (click)="processingAttachmentsService.deleteAttachment()"
                 type="button">{{ 'modals.remove_attachment.remove' | translate }}</button>
         </div>
     </div>
@@ -294,19 +322,6 @@
         </button>
         <form class="pia-cardsBlock-item-form" (ngSubmit)="onSubmit()" [formGroup]="piaForm">
             <div>
-                <label for="name">{{ 'homepage.cards.pia_name' | translate }}</label>
-                <input formControlName="name" type="text" placeholder="{{ 'homepage.cards.placeholder_pia_name' | translate }}" id="name"
-                    required>
-            </div>
-            <!-- hide the type feature-->
-            <div *ngIf="false">
-                <label for="type">{{ 'homepage.cards.pia_type' | translate }}</label>
-                <select formControlName="type" id="type"
-                    required>
-                    <option *ngFor="let type of piaTypes" value="{{ type }}">{{ 'homepage.cards.pia_types.' + type | translate }}</option>
-                </select>
-            </div>
-            <div>
                 <label for="author_name">{{ 'homepage.cards.author' | translate }}</label>
                 <input formControlName="author_name" type="text" placeholder="{{ 'homepage.cards.placeholder_author' | translate }}" id="author_name"
                     required>
@@ -321,10 +336,7 @@
                 <input formControlName="validator_name" type="text" placeholder="{{ 'homepage.cards.placeholder_validation' | translate }}"
                     id="validator_name" required>
             </div>
-            <div class="pia-cardsBlock-item-date" *ngIf="newPia">
-                <div>{{ 'homepage.cards.date' | translate }}</div>
-                <time>{{ newPia.created_at | date: 'dd/MM/yyyy'}}</time>
-            </div>
+            
             <div class="pia-cardsBlock-item-status">
                 <div class="pia-cardsBlock-item-status-infos">
                     <div>{{ 'homepage.cards.status' | translate }}</div>
@@ -338,6 +350,47 @@
             </div>
             <div class="pia-cardsBlock-item-btn">
                 <button type="submit" [disabled]="piaForm.invalid" class="btn btn-green get-focus" id="pia-save-card-btn">{{ 'homepage.cards.start' | translate }}</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="pia-modalBlock" id="modal-list-new-processing">
+    <div class="pia-modalBlock-content bounceIn">
+        <button tabindex="1" type="button" class="pia-modalBlock-close btn" title="{{ 'homepage.cards.title_close_creation' | translate }}"
+            (click)="_modalsService.closeModal()">
+            <span class="pia-icons pia-icon-close"></span>
+        </button>
+        <form class="pia-cardsBlock-item-form" (ngSubmit)="onSubmitProcessing()" [formGroup]="processingForm">
+            <div>
+                <label for="name">{{ 'homepage.cards.processing_name' | translate }}</label>
+                <input formControlName="name" type="text" placeholder="{{ 'homepage.cards.placeholder_processing_name' | translate }}" id="name"
+                    required>
+            </div>
+            <div>
+                <label for="author">{{ 'homepage.cards.author' | translate }}</label>
+                <input formControlName="author" type="text" placeholder="{{ 'homepage.cards.placeholder_author' | translate }}" id="author"
+                    required>
+            </div>
+            <div>
+                <label for="designated-controller">{{ 'homepage.cards.designated_controller' | translate }}</label>
+                <input formControlName="designated_controller" type="text" placeholder="{{ 'homepage.cards.placeholder_designated_controller' | translate }}"
+                    id="designated-controller" required>
+            </div>
+            <p>&nbsp;</p>
+            <!--
+            <div class="pia-cardsBlock-item-date" *ngIf="newProcessing">
+                <div>{{ 'homepage.cards.date' | translate }}</div>
+                <time>{{ newPia.created_at | date: 'dd/MM/yyyy'}}</time>
+            </div>
+            <div class="pia-cardsBlock-item-status">
+                <div class="pia-cardsBlock-item-status-infos">
+                    <div>{{ 'homepage.cards.status' | translate }}</div>
+                </div>
+            </div>
+            -->
+            <div class="pia-cardsBlock-item-btn">
+                <button type="submit" [disabled]="processingForm.invalid" class="btn btn-green get-focus" id="processing-save-card-btn">{{ 'homepage.cards.start' | translate }}</button>
             </div>
         </form>
     </div>

@@ -1,22 +1,49 @@
 <div class="pia-folder-item" [attr.data-id]="folder.id" [attr.data-name]="folder.name" >
-    <div class="pia-cardsBlock-toolbar">
-        <div class="pia-cardsBlock-toolbar-more">
-            <a href="javascript:;" class="btn pia-tooltip" title="{{ 'homepage.cards.item.tools.more_options' | translate }}">
-                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                <ul class="pia-cardsBlock-toolbar-moreList">
-                    <li class="pia-cardsBlock-toolbar-delete" *ngxPermissionsOnly="['CanDeletePIA']">
-                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                        <a href="javascript:;" (click)="removeFolder(folder)">{{ 'homepage.cards.item.tools.remove' | translate }}</a>
-                    </li>
-                </ul>
-            </a>
+    <div class="pia-cardsBlock-checkbox-container">
+        <label class="pia-cardsBlock-checkbox">
+            <input type="checkbox" [(ngModel)]="checked" data-md-icheck (change)="toggleChecked(folder.id)"/>
+            <span class="pia-cardsBlock-checkmark"></span>
+        </label>
+        <div class="pia-cardsBlock-toolbar">
+            <div class="pia-cardsBlock-toolbar-more">
+                <a href="javascript:;" class="btn pia-tooltip pia-dropdown-icon" title="{{ 'homepage.cards.item.tools.more_options' | translate }}">
+                    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                    <ul class="pia-cardsBlock-toolbar-moreList">
+                        <li class="pia-cardsBlock-toolbar-delete" *ngxPermissionsOnly="['CanDeletePIA']">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            <a href="javascript:;" (click)="removeFolder(folder)">{{ 'homepage.cards.item.tools.remove' | translate }}</a>
+                        </li>
+                    </ul>
+                </a>
+            </div>
         </div>
     </div>
     <div class="folder-icon" routerLink="/folders/{{folder.id}}">
         <i class="fa fa-folder-open" aria-hidden="true"></i>
     </div>
-    <form [formGroup]="folderForm">
-        <input class="folder-title" [value]="folder.name" formControlName="name" required (focusout)="folderNameFocusOut()" />
+    <form #folderForm="ngForm">
+        <input class="folder-title" [(ngModel)]="folder.name" name="name" required (focusout)="folderNameFocusOut()"/>
+        <div class="form-field person-in-charge">
+            <label class="title person-in-charge-label" for="person-in-charge">{{ 'homepage.cards.folder.person_in_charge' | translate }}</label>
+            <div (click)="editField(personInCharge)"
+              class="value"
+              [innerHTML]="folderForm.form.controls['person-in-charge']?.value | safeHtml"
+              [ngClass]="{ 'hide': ((editor && elementId === personInCharge.id)) }"
+            ></div>
+  
+            <textarea
+              class="field"
+              id="person-in-charge-{{ folder.id }}"
+              name="person-in-charge"
+              minRows="4"
+              cols="30"
+              #personInCharge
+              (change)="updateFolder()"
+              [(ngModel)]="folder.person_in_charge"
+              [ngClass]="{ 'hide': (folderForm.form.controls['person-in-charge']?.value) }"
+              (focusin)="editField($event.target)"
+            ></textarea>
+          </div>
     </form>
     <div class="bottom-actions">
         <a class="btn btn-green" routerLink="/folders/{{folder.id}}" href="#">{{ 'homepage.cards.folder.open' | translate }}</a>

@@ -42,13 +42,13 @@
       position: absolute;
       top: 32.5%;
       left: 50%;
-      background-color: #fff;
+      background-color: $pia-full-white;
     }
     &-content {
       margin-left: -220px;
       width: 440px;
-      box-shadow: 15px 15px 205px -35px black;
-      text-align: center;
+      box-shadow: 15px 15px 205px -35px $pia-dark-black;
+      text-align: left;
       color: $pia-blue;
       font-style: italic;
       font-weight: 400;
@@ -138,7 +138,8 @@
     &-form {
       text-align: left;
     }
-    &-status {
+    &-status,
+    &-pias-number {
       display: flex;
       justify-content: space-between;
       &-infos {
@@ -151,7 +152,7 @@
   textarea {
     width: 94%;
     height: 100px;
-    border: 1px solid #A7A7A7;
+    border: 1px solid $pia-gray;
   }
 }
 

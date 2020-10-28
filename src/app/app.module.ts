@@ -5,11 +5,13 @@ import { AppComponent, SafeHtmlPipe, Nl2brPipe } from 'app/app.component';
 import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader, TranslatePipe } from '@ngx-translate/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 import { AppDataService } from 'app/services/app-data.service';
+import { ProcessingArchitectureService } from 'app/services/processing-architecture.service';
 import { HeaderComponent } from 'app/header/header.component';
 import { AuthenticationComponent } from 'app/authentication/authentication.component';
 import { CardsComponent } from 'app/cards/cards.component';
@@ -50,11 +52,10 @@ import {
     ActionPlanImplementationComponent
   } from 'app/entry/entry-content/action-plan/action-plan-implementation/action-plan-implementation.component';
 import { environment } from '../environments/environment';
-import { ListItemComponent } from 'app/cards/list-item/list-item.component';
+import { ListItemComponent } from 'app/lists/list-item/list-item.component';
 import { SummaryComponent } from 'app/summary/summary.component';
 import { AboutComponent } from 'app/about/about.component';
 import { AppRoutingModule } from 'app/app-routing.module';
-import { CardsRoutingModule } from 'app/cards/cards-routing.module';
 
 import { ApiModule } from '@api/api.module';
 import { SecurityModule } from '@security/security.module';
@@ -62,11 +63,36 @@ import { TemplatesComponent } from './templates/templates.component';
 import { ToastrModule } from 'ngx-toastr';
 import { AppErrorHandler } from 'app/services/app-error.handler';
 import { FolderItemComponent } from './cards/folder-item/folder-item.component';
-import { ListItemFolderComponent } from './cards/list-item-folder/list-item-folder.component';
+import { ListItemFolderComponent } from './lists/list-item-folder/list-item-folder.component';
+import { PortfolioComponent, StructureItemComponent } from 'app/portfolio';
+import { DashboardComponent, DashboardItemComponent } from 'app/dashboard';
 import { DndModule } from 'ngx-drag-drop';
+import { ProfileSession } from './services/profile-session.service';
+import { PortfolioGuardService } from 'app/services/portfolio-guard.service';
+import { StructureGuardService } from 'app/services/structure-guard.service';
+import { ProcessingComponent } from './processing/processing.component';
+import { ProcessingFormComponent} from './processing/processing-form/processing-form.component';
+import { ProcessingService} from './processing/processing.service';
+import { ProcessingDataTypesComponent } from './processing/processing-form/processing-data-types/processing-data-types.component';
+import { PiasListComponent } from './pias/list/list.component';
+import { PiasListItemComponent } from './pias/list/item/item.component';
+import { ProcessingDataTypeService } from '@api/service';
+import { EditableFieldComponent } from './pias/list/item/editable-field/editable-field.component';
+import { ListsComponent } from './lists/lists.component';
+import { StructureComponent } from './structure/structure.component';
+import { CommentsComponent as ProcessingCommentsComponent } from './processing/comments/comments.component';
+import { AttachmentsComponent as ProcessingAttachmentsComponent } from './processing/attachments/attachments.component';
+import { AttachmentsService as ProcessingAttachmentsService} from './processing/attachments/attachments.service';
+import { AttachmentItemComponent as ProcessingAttachmentItemComponent } from './processing/attachments/attachment-item/attachment-item.component';
+import { EvaluationBlockComponent } from './processing/evaluation-block/evaluation-block.component';
+import { ReportingComponent } from './reporting/reporting.component';
 
 const providersList: any = [
   AppDataService,
+  ProcessingArchitectureService,
+  ProfileSession,
+  PortfolioGuardService,
+  StructureGuardService,
   MeasureService,
   ModalsService,
   AttachmentsService,
@@ -76,6 +102,9 @@ const providersList: any = [
   SidStatusService,
   LanguagesService,
   GlobalEvaluationService,
+  ProcessingService,
+  ProcessingAttachmentsService,
+  ProcessingDataTypeService,
   {
     provide: ErrorHandler,
     useClass: AppErrorHandler,
@@ -137,9 +166,27 @@ export function createTranslateLoader(http: HttpClient) {
     AboutComponent,
     TemplatesComponent,
     FolderItemComponent,
-    ListItemFolderComponent
+    ListItemFolderComponent,
+    PortfolioComponent,
+    StructureItemComponent,
+    DashboardComponent,
+    DashboardItemComponent,
+    ProcessingComponent,
+    ProcessingFormComponent,
+    ProcessingDataTypesComponent,
+    PiasListComponent,
+    PiasListItemComponent,
+    EditableFieldComponent,
+    ListsComponent,
+    StructureComponent,
+    ProcessingCommentsComponent,
+    ProcessingAttachmentsComponent,
+    ProcessingAttachmentItemComponent,
+    EvaluationBlockComponent,
+    ReportingComponent
   ],
   imports: [
+    ChartsModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -162,7 +209,7 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     DndModule
   ],
-  exports: [],
+  exports: [ChartsModule],
   providers: providersList,
   bootstrap: [AppComponent]
 })

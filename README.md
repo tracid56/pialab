@@ -11,10 +11,10 @@ First things first, you need to set up the [ backend](https://github.com/pia-lab
 Once ready
 
 Install Angular cli via [NPM](https://www.npmjs.com/get-npm)
-`npm install -g @angular/CLI `
+`npm install -g @angular/cli `
 
 Clone project 
-`git clone https://github.com/pia-lab/pialab.git`
+`git clone git://git.pialab.io/pialab/pialab.git`
 `cd pialab`
 
 Install project dependencies

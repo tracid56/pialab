@@ -1,94 +1,84 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Pia } from '../../entry/pia.model';
-import { Router } from '@angular/router';
 
-import { Attachment } from 'app/entry/attachments/attachment.model';
-import { ModalsService } from 'app/modals/modals.service';
-import { PiaService } from 'app/entry/pia.service';
+import { PiaService } from '../../entry/pia.service';
 
-import {PiaModel, AttachmentModel} from '@api/models';
-import {PiaApi, AttachmentApi} from '@api/services';
-import {PermissionsService} from '@security/permissions.service';
-import { PiaType } from '@api/model/pia.model';
+import { ProcessingModel, FolderModel } from '@api/models';
+import { ProcessingApi } from '@api/services';
+import { PermissionsService } from '@security/permissions.service';
+import { ModalsService } from '../../modals/modals.service';
 
 @Component({
   selector: 'app-card-item',
   templateUrl: './card-item.component.html',
-  styleUrls: ['./card-item.component.scss', './card-item_edit.component.scss',
-    './card-item_doing.component.scss', './card-item_archived.component.scss'],
+  styleUrls: [
+    './card-item.component.scss',
+    './card-item_edit.component.scss',
+    './card-item_doing.component.scss',
+    './card-item_archived.component.scss'
+  ],
 })
 export class CardItemComponent implements OnInit {
-  @Input() pia: any;
-  @Input() previousPia: any;
-  piaForm: FormGroup;
-  attachments: any;
-  piaTypes: any;
+  @Input() processing: any;
+  @Input() previousProcessing: any;
+  processingForm: FormGroup;
+  checked: boolean = false;
+  @Output() onCheckChange: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild('piaName') private piaName: ElementRef;
-  @ViewChild('piaAuthorName') private piaAuthorName: ElementRef;
-  @ViewChild('piaEvaluatorName') private piaEvaluatorName: ElementRef;
-  @ViewChild('piaValidatorName') private piaValidatorName: ElementRef;
-  @ViewChild('piaType') private piaType: ElementRef;
+  @ViewChild('processingName') private processingName: ElementRef;
+  @ViewChild('processingAuthor') private processingAuthor: ElementRef;
+  @ViewChild('processingDesignatedController') private processingDesignatedController: ElementRef;
 
-  constructor(private router: Router,
-              private _modalsService: ModalsService,
-              public _piaService: PiaService,
-              private piaApi: PiaApi,
-              private attachmentApi: AttachmentApi,
-              private permissionsService: PermissionsService
-              ) { }
+  constructor(
+    private _modalsService: ModalsService,
+    public _piaService: PiaService,
+    private processingApi: ProcessingApi,
+    private permissionsService: PermissionsService
+  ) {
+
+  }
 
   ngOnInit() {
 
-    this.piaForm = new FormGroup({
-      id: new FormControl(this.pia.id),
-      name: new FormControl({ value: this.pia.name, disabled: true }),
-      author_name: new FormControl({ value: this.pia.author_name, disabled: true }),
-      evaluator_name: new FormControl({ value: this.pia.evaluator_name, disabled: true }),
-      validator_name: new FormControl({ value: this.pia.validator_name, disabled: true }),
-      type: new FormControl({value: this.pia.type, disabled: true})
+    this.processingForm = new FormGroup({
+      id: new FormControl(this.processing.id),
+      name: new FormControl({ value: this.processing.name, disabled: true }),
+      author: new FormControl({ value: this.processing.author, disabled: true }),
+      designated_controller: new FormControl({ value: this.processing.designated_controller, disabled: true })
     });
 
     // add permission verification
-    const hasPerm$ = this.permissionsService.hasPermission('CanCreatePIA');
+    const hasPerm$ = this.permissionsService.hasPermission('CanCreateProcessing');
     hasPerm$.then((bool: boolean) => {
-      for (const field in this.piaForm.controls) {
-          const fc = this.piaForm.get(field);
+      // tslint:disable-next-line:forin
+      for (const field in this.processingForm.controls) {
+          const fc = this.processingForm.get(field);
           bool ? fc.enable() : fc.disable();
       }
-    } );
-
-    this.attachmentApi.getAll(this.pia.id).subscribe((entries: AttachmentModel[]) => {
-      this.attachments = entries;
     });
-
-    this.piaTypes = Object.values(PiaType);
   }
 
   /**
-   * Focuses pia name field.
+   * Focuses processing name field.
    * @memberof CardItemComponent
    */
-  piaNameFocusIn() {
-    // this.piaForm.controls['name'].enable();
-    this.piaName.nativeElement.focus();
+  processingNameFocusIn() {
+    this.processingName.nativeElement.focus();
   }
 
   /**
-   * Disables pia name field and saves data.
+   * Disables processing name field and saves data.
    * @memberof CardItemComponent
    */
-  piaNameFocusOut() {
-    let userText = this.piaForm.controls['name'].value;
+  processingNameFocusOut() {
+    let userText = this.processingForm.controls['name'].value;
     if (userText && typeof userText === 'string') {
       userText = userText.replace(/^\s+/, '').replace(/\s+$/, '');
     }
     if (userText !== '') {
-
-      this.piaApi.get(this.piaForm.value.id).subscribe((thePia: PiaModel) => {
-        thePia.name = this.piaForm.value.name;
-        this.piaApi.update(thePia).subscribe();
+      this.processingApi.get(this.processingForm.value.id).subscribe((theProcessing: ProcessingModel) => {
+        theProcessing.name = this.processingForm.value.name;
+        this.processingApi.update(theProcessing).subscribe();
       });
     }
   }
@@ -97,23 +87,23 @@ export class CardItemComponent implements OnInit {
    * Focuses pia author name field.
    * @memberof CardItemComponent
    */
-  piaAuthorNameFocusIn() {
-    this.piaAuthorName.nativeElement.focus();
+  processingAuthorFocusIn() {
+    this.processingAuthor.nativeElement.focus();
   }
 
   /**
    * Disables pia author name field and saves data.
    * @memberof CardItemComponent
    */
-  piaAuthorNameFocusOut() {
-    let userText = this.piaForm.controls['author_name'].value;
+  processingAuthorFocusOut() {
+    let userText = this.processingForm.controls['author'].value;
     if (userText && typeof userText === 'string') {
       userText = userText.replace(/^\s+/, '').replace(/\s+$/, '');
     }
     if (userText !== '') {
-      this.piaApi.get(this.piaForm.value.id).subscribe((thePia: PiaModel) => {
-        thePia.author_name = this.piaForm.value.author_name;
-        this.piaApi.update(thePia).subscribe();
+      this.processingApi.get(this.processingForm.value.id).subscribe((theProcessing: ProcessingModel) => {
+        theProcessing.author = this.processingForm.value.author;
+        this.processingApi.update(theProcessing).subscribe();
       });
     }
   }
@@ -122,80 +112,67 @@ export class CardItemComponent implements OnInit {
    * Focuses pia evaluator name field.
    * @memberof CardItemComponent
    */
-  piaEvaluatorNameFocusIn() {
-    this.piaEvaluatorName.nativeElement.focus();
+  processingDesignatedControllerFocusIn() {
+    this.processingDesignatedController.nativeElement.focus();
   }
 
   /**
    * Disables pia evaluator name field and saves data.
    * @memberof CardItemComponent
    */
-  piaEvaluatorNameFocusOut() {
-    let userText = this.piaForm.controls['evaluator_name'].value;
+  processingDesignatedControllerFocusOut() {
+    let userText = this.processingForm.controls['designated_controller'].value;
     if (userText && typeof userText === 'string') {
       userText = userText.replace(/^\s+/, '').replace(/\s+$/, '');
     }
     if (userText !== '') {
-      this.piaApi.get(this.piaForm.value.id).subscribe((thePia: PiaModel) => {
-        thePia.evaluator_name = this.piaForm.value.evaluator_name;
-        this.piaApi.update(thePia).subscribe();
+      this.processingApi.get(this.processingForm.value.id).subscribe((theProcessing: ProcessingModel) => {
+        theProcessing.designated_controller = this.processingForm.value.designated_controller;
+        this.processingApi.update(theProcessing).subscribe();
       });
     }
   }
 
   /**
-   * Focuses pia validator name field.
+   * Deletes a Processing with a given id.
+   * @param {string} id - The Processing id.
    * @memberof CardItemComponent
    */
-  piaValidatorNameFocusIn() {
-    this.piaValidatorName.nativeElement.focus();
+  removeProcessing(id: string) {
+    localStorage.setItem('processing-id', id);
+    this._modalsService.openModal('modal-remove-processing');
   }
 
   /**
-   * Disables pia validator name field and saves data.
+   * Exports a Processing with a given id.
+   * @param {number} id - The Processing id.
    * @memberof CardItemComponent
    */
-  piaValidatorNameFocusOut() {
-    let userText = this.piaForm.value.validator_name;
-    if (userText && typeof userText === 'string') {
-      userText = userText.replace(/^\s+/, '').replace(/\s+$/, '');
-    }
-    if (userText !== '') {
-      this.piaApi.get(this.piaForm.value.id).subscribe((thePia: PiaModel) => {
-        thePia.validator_name = this.piaForm.value.validator_name;
-        this.piaApi.update(thePia).subscribe();
-      });
-    }
+  exportProcessing(id: number) {
+    const date = new Date().getTime();
+
+    this.processingApi.export(id).subscribe(((data) =>{
+      const a = document.createElement('a');
+      const url = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
+      const event = new MouseEvent('click', {view: window});
+
+      a.setAttribute('href', url);
+      a.setAttribute('download','pialab_processing_' + id + '_'+ date + '.json');
+      a.dispatchEvent(event);
+    }));
   }
 
   /**
-   * Disables pia validator name field and saves data.
+   * Duplicates a Processing.
    * @memberof CardItemComponent
    */
-  piaTypeFocusOut() {
-    this.piaApi.get(this.piaForm.value.id).subscribe((thePia: PiaModel) => {
-      thePia.type = this.piaForm.value.type;
-
-      this.piaApi.update(thePia).subscribe();
+  duplicateProcessing() {
+    this.processingApi.import(this.processing.toJson(), this._piaService.currentFolder.id).subscribe((theProcessing: ProcessingModel) => {
+      this._piaService.currentFolder.processings.push(theProcessing);
     });
   }
 
-  /**
-   * Deletes a PIA with a given id.
-   * @param {string} id - The PIA id.
-   * @memberof CardItemComponent
-   */
-  removePia(id: string) {
-    localStorage.setItem('pia-id', id);
-    this._modalsService.openModal('modal-remove-pia');
-  }
-
-  /**
-   * Export a PIA in JSON format.
-   * @param {number} id - The PIA id.
-   * @memberof CardItemComponent
-   */
-  export(id: number) {
-    this._piaService.export(id);
+  toggleChecked(id) {
+    this.onCheckChange.emit({id, checked: this.checked});
   }
 }

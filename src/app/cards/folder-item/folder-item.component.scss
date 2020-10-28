@@ -1,5 +1,10 @@
 @import '../../../assets/stylesheets/variables';
 
+.pia-cardsBlock-toolbar {
+  top: 9px;
+  right: 9px;
+}
+
 .pia-folder-item {
   width: 276px;
   display: inline-block;
@@ -11,7 +16,7 @@
   height: 384px;
   border: none;
   padding: 9px;
-  background-color: #fff;
+  background-color: $pia-full-white;
   //background: url("../../../assets/images/pia-bg.png") repeat center center;
   -webkit-box-shadow: 1px 1px 2px 1px rgba(204,202,204,1);
     -moz-box-shadow: 1px 1px 2px 1px rgba(204,202,204,1);
@@ -20,7 +25,7 @@
   .folder-icon {
     width: 100%;
     text-align: center;
-    margin-top: 100px;
+    margin-top: 60px;
     cursor: pointer;
 
     .fa {
@@ -32,12 +37,12 @@
     width: 100%;
     text-align: center;
     font-size: 1.9rem;
-    color: #2BBBAD;
+    color: $pia-green;
     background: transparent;
     border: 0;
 
     &:hover {
-      outline: 1px dotted #3EE095;
+      outline: 1px dotted $pia-green;
       cursor: text;
     }
   }
@@ -47,7 +52,7 @@
     bottom: 3px;
     left: 9px;
     right: 9px;
-    border-top: 1px solid #2BBBAD;
+    border-top: 1px solid $pia-green;
     padding-top: 21px;
     margin-top: 21px;
     text-align: center;
@@ -58,4 +63,96 @@
       padding: 5.5px 21px;
     }
   }
+
+  .hide {
+    display: none;
+  }
+
+  .pia-dropdown-icon {
+    top: -0.6em;
+  }
+
+  .person-in-charge {
+    margin-top: 20px;
+    text-align: center;
+
+    .person-in-charge-label {
+      color: $pia-gray;
+    }
+    
+    .value {
+      margin-top: 10px;
+    }
+
+    textarea {
+      resize: none;
+      display: block;
+      width: 100%;
+      border: 0;
+      padding: 5px 12px;
+      font-size: 1.35rem;
+      min-height: 80px;
+      &::placeholder {
+        font-style: italic;
+      }
+      &:disabled {
+        background-color: transparent;
+        color: $pia-dark-black;
+        cursor: pointer;
+      }
+    }
+
+
+  }
+}
+
+.pia-cardsBlock-checkbox-container {
+  height: 25px;
+  display: flex;
+}
+
+.pia-cardsBlock-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.pia-cardsBlock-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+.pia-cardsBlock-checkbox:hover input ~ .pia-cardsBlock-checkmark {
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+.pia-cardsBlock-checkbox input:checked ~ .pia-cardsBlock-checkmark {
+  background-color: #0277BD;
+}
+
+.pia-cardsBlock-checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.pia-cardsBlock-checkbox input:checked ~ .pia-cardsBlock-checkmark:after {
+  display: block;
+}
+
+.pia-cardsBlock-checkbox .pia-cardsBlock-checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }

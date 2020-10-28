@@ -2,5 +2,12 @@ export const environment = {
   name: 'production',
   production: true,
   version: '1.0',
-  rollbar_key: ''
+  rollbar_key: '',
+  date_format: 'DD MM YY HH:mm:ss',
+  api: {
+    client_id:     'client_id',
+    client_secret: 'client_secret',
+    host:          'https://backend.url/',
+    token_path:    '/oauth/v2/token'
+  },
 };

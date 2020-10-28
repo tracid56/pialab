@@ -7,7 +7,18 @@
     "description": "This software by the is meant to guide the data controllers in building and demonstrating compliance to the GDPR. It helps to properly carry out a data protection impact assessment by facilitating the use of the PIA method developed by the CNIL.",
     "start": "Start"
   },
+  "dashboard":{
+    "title" : "Dashboard",
+    "items" :{
+      "portfolio" : "Portfolio",
+      "processings" : "Data processing register"
+    }
+  },
+  "portfolio":{
+    "title" : "Customer Portfolio"
+  },
   "messages": {
+    "no_structure_assigned":"No structure is assigned to you",
     "client_error":{
       "title": "An error occurred",
       "content": "Please contact your administrator"
@@ -39,6 +50,7 @@
     "logo_title": "RGPD compliance companion software",
     "logo_subtitle": "",
     "homepage_link": "Dashboard",
+    "portfolio_link": "Portfolio",
     "knowledge_base_link": "Knowledge base",
     "pia_example_link": "PIA example",
     "languages": {
@@ -76,13 +88,18 @@
       "validator": "Validator",
       "new": "New...",
       "new_pia": "PIA",
-      "new_from_template": "PIA from template",
+      "new_from_template": "Processing from template",
       "new_folder": "Folder",
       "import_pia": "Import PIA",
       "list_rocket_content": "Get started ! To initiate <br>a PIA, click on the +",
-      "card_rocket_content": "Get started !<br><br>To initiate a PIA,<br> click on New PIA"
+      "card_rocket_content": "Get started !<br><br>To initiate a PIA,<br> click on New PIA",
+      "export": "Export...",
+      "export_csv": "Csv",
+      "export_LOW": "Libre office",
+      "export_loading": "Export in progress..."
     },
     "cards": {
+      "processing_register": "Data processing register",
       "new_pia": "New PIA",
       "placeholder_new_pia": "New PIA",
       "or": "or",
@@ -104,6 +121,10 @@
       "creation_status": "Creation",
       "start": "Start",
       "placeholder_start": "All fields must be filled",
+      "designated_controller": "Processing designated controller",
+      "controllers": "Processing controllers",
+      "placeholder_controllers": "Firstname(s), Lastname(s)",
+      "placeholder_designated_controller": "Firstname, Lastname",
       "pia_type": "Type",
       "pia_types": {
         "regular": "Processing",
@@ -114,7 +135,8 @@
         "title": "Folder",
         "parent": "Parent folder",
         "open": "Open folder",
-        "root": "Root folder"
+        "root": "Root folder",
+        "person_in_charge": "Person in charge"
       },
       "item": {
         "tools": {
@@ -153,6 +175,12 @@
           "remove": "Delete"
         }
       }
+    },
+    "structure": {
+      "info_button": "Structure informations"
+    },
+    "reporting": {
+      "button": "Reporting"
     }
   },
   "pia": {
@@ -168,7 +196,8 @@
       "preview": "Preview",
       "display_action_plan": "Display<br>action plan",
       "edition": "Edition",
-      "evaluation": "Evaluation"
+      "evaluation": "Evaluation",
+      "pia": "PIA"
     },
     "attachments": {
       "title": "Attachments",
@@ -201,6 +230,196 @@
       "mandatory_fields": "All fields must be filled"
     }
   },
+  "reporting": {
+    "processing": {
+      "kpi": "Total processing",
+      "graph_by_status": "Distribution of processing status"
+    },
+    "pia": {
+      "kpi": "Total PIA",
+      "graph_by_status": "Distribution of PIA by status",
+      "graph_by_folder": "Distribution of PIA by folder"
+    }
+  },
+  "structure": {
+    "form": {
+      "name": {
+        "title": "Name"
+      },
+      "executive": {
+        "title": "Executive"
+      },
+      "backup": {
+        "title": "Backup"
+      },
+      "dpo": {
+        "title": "DPO"
+      },
+      "address": {
+        "title": "Address"
+      },
+      "phone": {
+        "title": "Phone number"
+      },
+      "siren": {
+        "title": "SIREN"
+      },
+      "siret": {
+        "title": "SIRET (HQ)"
+      },
+      "vat_number": {
+        "title": "Vat Number"
+      },
+      "activity_code": {
+        "title": "Activity Code"
+      },
+      "legal_form": {
+        "title": "Legal form"
+      },
+      "registration_date": {
+        "title": "Registration date"
+      }
+    }
+  },
+  "processing": {
+    "comments": {
+      "add": "Comment",
+      "new": "Send",
+      "count": "comment(s)",
+      "comment": "Comment",
+      "placeholder_new_comment": "Leave a comment"
+    },
+    "form": {
+      "previous": "Previous section",
+      "next": "Next section",
+      "ask_validate_button": "Ask for processing validation",
+      "cancel_ask_validate_button": "Cancel processing validation ask",
+      "description": {
+        "title": "Quelles sont les finalités du traitement ?",
+        "placeholder": "Décrivez les objectifs et finalités du traitement"
+      },
+      "context_of_implementation": {
+        "title": "Quel est le context de mise en œuvre du traitement ?",
+        "placeholder": "Décrivez le context de mise en œuvre du traitement"
+      },
+      "controllers": {
+        "title": "Quelles sont les personnes responsables du traitement?",
+        "placeholder": "Désignez les personnes opérationnelles qui sont responsables du traitement"
+      },
+      "standards": {
+        "title": "Quels sont les référenciels applicables ?",
+        "placeholder": "Listez les référenciels qui concernent ce traitement"
+      },
+      "non-eu-transfer":  {
+        "title": "Transfert hors UE",
+        "placeholder": "Laisser vide si pas de transfert de données hors UE"
+      },
+      "data-types": "Types de données traitées",
+      "storage": {
+        "title": "Où les données sont elles stockées",
+        "placeholder": "Décrivez le/les lieux de stockage des données"
+      },
+      "processors": {
+        "title": "Sous traitants",
+        "placeholder": "Listez les sous traitants"
+      },
+      "recipients": {
+        "title": "Destinataires",
+        "placeholder": "Listez les destinataires du traitement"
+      },
+      "lifecycle": {
+        "title": "Data lifecycle",
+        "placeholder": "Describe data lifecycle in this processing"
+      },
+      "lawfulness": {
+        "title": "Quels sont les fondements qui rendent le traitement licite ?",
+        "placeholder": "Presentez les fondements de votre traitement (ex: consentement, exécution d'un contrat, obligation légale, etc...)"
+      },
+      "consent": {
+        "title": "Si applicable, comment le consentement des personnes concernées est-il obtenu ou comment sont elles informées?",
+        "placeholder": "Décrivez les modalités prévues pour obtenir le consentement des personnes concernées ou les informer qu'elles sont concernées par le traitement."
+      },
+      "rights_guarantee": {
+        "title": "Mesures protectrices des droits",
+        "placeholder": "Décrivez les modalités prévues pour guarantir les droits élémentaires des personnes concernées (portabilité, oubli, limitation, opposition, rectification, suppression)."
+      },
+      "minimization": {
+        "title": "Les données collectées sont-elles adéquates, pertinentes et limitées à ce qui est nécessaire au regard des finalités pour lesquelles elles sont traitées (minimisation des données) ?",
+        "placeholder": "Expliquez en quoi chaque donnée collectée est nécessaire aux finalités de votre traitement."
+      },
+      "exactness": {
+        "title": "Les données sont-elles exactes et tenues à jour ?",
+        "placeholder": "Décrivez les mesures prévues pour assurer la qualité et la pertinence des données."
+      },
+      "concerned_people": {
+        "title": "Concerned people",
+        "placeholder": "Détaillez les types de personnes concernées"
+      },
+      "sections": {
+        "description": {
+          "title": "Description de l'activité de traitement",
+          "short_help": ""
+        },
+        "data": {
+          "title": "Données traitées",
+          "short_help": ""
+        },
+        "lifecycle": {
+          "title": "Cycle de vie des données",
+          "short_help": ""
+        }
+      },
+      "pia_section": {
+        "title": "PIAs",
+        "new_pia_button": "Create new PIA",
+        "list_button": "List of PIAs"
+      }
+    },
+    "statuses": {
+      "0": "Doing",
+      "1": "To be validated",
+      "2": "Validated",
+      "3": "Archived"
+    },
+    "pia-list": {
+      "table-header": {
+        "name": "Name",
+        "stakeholders": "Stakeholders",
+        "status": "Status",
+        "createdAndUpdatedAt": "Created at<br />Updated at",
+        "progress": "Progress"
+      },
+      "item": {
+        "author_name": "Author",
+        "evaluator_name": "Evaluator",
+        "validator_name": "Validator",
+        "actions": {
+          "export": "Export PIA",
+          "tooltip": "Actions",
+          "duplicate": "Duplicate PIA",
+          "edit": "Édit PIA",
+          "action_plan": "Action plan",
+          "show": "Show PIA",
+          "remove": "Remove PIA"
+        }
+      }
+    }
+  },
+  "processing-data-types": {
+    "form": {
+      "retention-period": "Durée de conservation",
+      "sensitive": "Données sensibles ?",
+      "sensitive-affirmative": "Données sensibles",
+      "identification": "État-civil, identité, données d'identification, images(ex.nom, prénom, adresse, photographie, date et lieu de naissance, etc.)",
+      "personal": "Vie personnelle (ex. habitudes de vie, situation familiale, etc.)",
+      "professional": "Vie professionnelle(ex. CV, situation professionnelle, scolarité, formation, distinctions, diplômes, etc.)",
+      "financial": "Informations d’ordre économique et financier (ex. revenus, situation financière, données bancaires, etc.)",
+      "log": "Données de connexion (ex. adresses Ip, logs, identifiants des terminaux, identifiants de connexion, informations d'horodatage, etc.)",
+      "location": "Données de localisation (ex. déplacements, données GPS, GSM, ...)",
+      "internet": "Internet(ex. cookies, traceurs, données de navigation, mesures d’audience, ...)",
+      "other": "Autres catégories de données"
+    }
+  },
   "measures": {
     "placeholder_title": "Measure title",
     "add": "Add an empty measure (otherwise, use the knowledge base)",
@@ -210,7 +429,7 @@
   },
   "templates": {
     "pick": "Pick",
-    "header": "PIA templates"
+    "header": "Processing templates"
   },
   "knowledge_base": {
     "title": "Knowledge base",
@@ -819,7 +1038,10 @@
       "1": "To correct",
       "2": "Improvable",
       "3": "Acceptable"
-    }
+    },
+    "processing_validated": "Processing validated",
+    "processing_partialy_validated": "Processing partially validated",
+    "cancel": "Cancel validation"
   },
   "help": {
     "title": "Help",

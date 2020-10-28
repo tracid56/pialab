@@ -17,7 +17,18 @@
       "error" : "Identifiants incorrects"
     }
   },
+  "dashboard":{
+    "title" : "Tableau de bord",
+    "items" :{
+      "portfolio" : "Portefeuille Client",
+      "processings" : "Registre des traitements"
+    }
+  },
+  "portfolio":{
+    "title" : "Portefeuille client"
+  },
   "messages": {
+    "no_structure_assigned":"Aucune structure ne vous est assignée",
     "client_error":{
       "title": "Une erreur est survenue",
       "content": "Veuillez contacter votre administrateur"
@@ -49,6 +60,7 @@
     "logo_title": "Logiciel d'accompagnement à la mise en conformité RGPD",
     "logo_subtitle": "",
     "homepage_link": "Accueil",
+    "portfolio_link": "Portefeuille Client",
     "knowledge_base_link": "Base de connaissances",
     "pia_example_link": "Importer un exemple de PIA",
     "languages": {
@@ -86,13 +98,20 @@
       "validator": "Validateur",
       "new": "Nouveau...",
       "new_pia": "PIA",
-      "new_from_template": "PIA depuis un modèle",
+      "new_processing": "Traitement",
+      "new_from_template": "Traitement depuis un modèle",
       "new_folder": "Dossier",
       "import_pia": "Importer PIA",
       "list_rocket_content": "Lancez-vous ! Pour commencer<br>un PIA, cliquez sur le +",
-      "card_rocket_content": "Lancez-vous !<br><br>Pour commencer<br>un PIA, cliquez<br> sur le +"
+      "card_rocket_content": "Lancez-vous !<br><br>Pour commencer<br>un PIA, cliquez<br> sur le +",
+      "go_to_folders": "Retour aux dossiers",
+      "export": "Export...",
+      "export_csv": "Csv",
+      "export_LOW": "Libre office",
+      "export_loading": "Export en cours..."
     },
     "cards": {
+      "processing_register": "Registre des traitements",
       "new_pia": "Nouveau PIA",
       "placeholder_new_pia": "Nouveau PIA",
       "or": "ou",
@@ -100,9 +119,11 @@
       "placeholder_import_pia": "Importer PIA",
       "title_close_creation": "Fermer",
       "pia_name": "Nom",
+      "processing_name": "Nom",
       "folder_name": "Nom du dossier",
       "create_folder": "Créer le dossier",
       "placeholder_pia_name": "Intitulé du PIA",
+      "placeholder_processing_name": "Intitulé du Traitement",
       "author": "Saisie",
       "placeholder_author": "Prénom, nom",
       "evaluation": "Évaluation",
@@ -114,17 +135,23 @@
       "creation_status": "Création",
       "start": "Commencer",
       "placeholder_start": "Tous les champs doivent être remplis",
+      "designated_controller": "Responsable désigné du traitement",
+      "controllers": "Responsables de traitement",
+      "placeholder_controllers": "Nom(s) et Prénom(s)",
+      "placeholder_designated_controller": "Nom et Prénom",
       "pia_type": "Type",
       "pia_types": {
         "regular": "Traitement",
         "simplified": "Traitement simplifié",
         "advanced"  : "Traitement avec analyse d'impact"
       },
+      "pias_number": "Nombre de PIA",
       "folder": {
         "title": "Dossier",
         "parent": "Dossier parent",
         "open": "Consulter le dossier",
-        "root": "Dossier racine"
+        "root": "Dossier racine",
+        "person_in_charge": "Responsable"
       },
       "item": {
         "tools": {
@@ -133,11 +160,14 @@
           "duplicate": "Dupliquer",
           "action_plan": "Afficher le<br>plan d'action",
           "pia": "Afficher le<br>PIA",
-          "remove": "Supprimer"
+          "remove": "Supprimer",
+          "show_pias": "Voir les PIAs"
         },
         "edit_pia": "Éditer le PIA",
         "consult_pia": "Consulter le PIA",
-        "back_to_parent":"Retour"
+        "back_to_parent":"Retour",
+        "edit_processing": "Éditer le traitement",
+        "consult_processing": "Consulter le traitement"
       }
     },
     "lists": {
@@ -163,6 +193,202 @@
           "remove": "Supprimer"
         }
       }
+    },
+    "structure": {
+      "info_button": "Informations de la structure"
+    },
+    "reporting": {
+      "button": "Reporting"
+    }
+  },
+  "reporting": {
+    "processing": {
+      "kpi": "Traitement total",
+      "graph_by_status": "Répartition des statuts des fiches de traitement"
+    },
+    "pia": {
+      "kpi": "PIA total",
+      "graph_by_status": "Répartition des PIA par statut",
+      "graph_by_folder": "Répartition des PIA par dossier"
+    }
+  },
+  "structure": {
+    "form": {
+      "name": {
+        "title": "Dénomination"
+      },
+      "executive": {
+        "title": "Dirigeant"
+      },
+      "backup": {
+        "title": "Backup dirigeant"
+      },
+      "dpo": {
+        "title": "DPO"
+      },
+      "address": {
+        "title": "Adresse"
+      },
+      "phone": {
+        "title": "Numéro de téléphone"
+      },
+      "siren": {
+        "title": "SIREN"
+      },
+      "siret": {
+        "title": "SIRET (Siège)"
+      },
+      "vat_number": {
+        "title": "Numéro de TVA intracommunautaire"
+      },
+      "activity_code": {
+        "title": "Activité (Code NAF ou APE)"
+      },
+      "legal_form": {
+        "title": "Forme juridique"
+      },
+      "registration_date": {
+        "title": "Date immatriculation RCS"
+      }
+    }
+  },
+  "processing": {
+    "comments": {
+      "add": "Commenter",
+      "new": "Envoyer",
+      "count": "commentaire(s)",
+      "comment": "Commentaire",
+      "placeholder_new_comment": "Laisser un commentaire"
+    },
+    "form": {
+      "previous": "Section précédente",
+      "next": "Section suivante",
+      "ask_validate_button": "Demander la validation du traitement",
+      "cancel_ask_validate_button": "Annuler la demande de validation du traitement",
+      "description": {
+        "title": "Quelles sont les finalités du traitement ?",
+        "placeholder": "Décrivez les objectifs et finalités du traitement"
+      },
+      "context_of_implementation": {
+        "title": "Quel est le contexte de mise en œuvre du traitement ?",
+        "placeholder": "Décrivez le contexte de mise en œuvre du traitement"
+      },
+      "controllers": {
+        "title": "Quelles sont les personnes responsables du traitement?",
+        "placeholder": "Désignez les personnes opérationnelles qui sont responsables du traitement"
+      },
+      "lawfulness": {
+        "title": "Quels sont les fondements qui rendent le traitement licite ?",
+        "placeholder": "Presentez les fondements de votre traitement (ex: consentement, exécution d'un contrat, obligation légale, etc...)"
+      },
+      "standards": {
+        "title": "Quels sont les référentiels applicables ?",
+        "placeholder": "Listez les référentiels qui concernent ce traitement"
+      },
+      "consent": {
+        "title": "Si applicable, comment le consentement des personnes concernées est-il obtenu ou comment sont elles informées?",
+        "placeholder": "Décrivez les modalités prévues pour obtenir le consentement des personnes concernées ou les informer qu'elles sont concernées par le traitement."
+      },
+      "rights_guarantee": {
+        "title": "Mesures protectrices des droits",
+        "placeholder": "Décrivez les modalités prévues pour guarantir les droits élémentaires des personnes concernées (portabilité, oubli, limitation, opposition, rectification, suppression)."
+      },
+      "minimization": {
+        "title": "Les données collectées sont-elles adéquates, pertinentes et limitées à ce qui est nécessaire au regard des finalités pour lesquelles elles sont traitées (minimisation des données) ?",
+        "placeholder": "Expliquez en quoi chaque donnée collectée est nécessaire aux finalités de votre traitement."
+      },
+      "exactness": {
+        "title": "Les données sont-elles exactes et tenues à jour ?",
+        "placeholder": "Décrivez les mesures prévues pour assurer la qualité et la pertinence des données."
+      },
+      "non-eu-transfer":  {
+        "title": "En cas de transfert de données en dehors de l'Union européenne, les données sont-elles protégées de manière équivalente ?",
+        "placeholder": "Pour chaque pays en dehors de l'Union européenne où des données sont stockées ou traitées, identifiez-le et indiquez s'il est reconnu comme adéquat ou décrivez les clauses qui encadrent le transfert.(Laisser vide si pas de transfert de données hors UE)"
+      },
+      "data-types": "Types de données traitées",
+      "storage": {
+        "title": "Où les données sont elles stockées",
+        "placeholder": "Décrivez le/les lieux de stockage des données"
+      },
+      "processors": {
+        "title": "Sous traitants",
+        "placeholder": "Listez les sous traitants"
+      },
+      "recipients": {
+        "title": "Destinataires",
+        "placeholder": "Listez les destinataires du traitement"
+      },
+      "lifecycle": {
+        "title": "Cycle de vie des données",
+        "placeholder": "Décrivez le cycle de vie des données pour ce traitement (description fonctionnelle)"
+      },
+      "concerned_people": {
+        "title": "Personnes concernées",
+        "placeholder": "Détaillez les types de personnes concernées"
+      },
+      "sections": {
+        "description": {
+          "title": "Description de l'activité de traitement",
+          "short_help": ""
+        },
+        "data": {
+          "title": "Données traitées",
+          "short_help": ""
+        },
+        "lifecycle": {
+          "title": "Cycle de vie des données",
+          "short_help": ""
+        }
+      },
+      "pia_section": {
+        "title": "PIAs",
+        "new_pia_button": "Créer un PIA",
+        "list_button": "Voir la liste des PIAs"
+      }
+    },
+    "statuses": {
+      "0": "En cours",
+      "1": "À valider",
+      "2": "Valide",
+      "3": "Archivé"
+    },
+    "pia-list": {
+      "table-header": {
+        "name": "Nom",
+        "stakeholders": "Parties prenantes",
+        "status": "État",
+        "createdAndUpdatedAt": "Créé le<br />MàJ le",
+        "progress": "Avancement"
+      },
+      "item": {
+        "author_name": "Auteur",
+        "evaluator_name": "Évaluateur",
+        "validator_name": "Validateur",
+        "actions": {
+          "export": "Exporter le PIA",
+          "tooltip": "Actions",
+          "duplicate": "Dupliquer le PIA",
+          "edit": "Éditer le PIA",
+          "action_plan": "Plan d'action",
+          "show": "Afficher le PIA",
+          "remove": "Supprimer le PIA"
+        }
+      }
+    }
+  },
+  "processing-data-types": {
+    "form": {
+      "retention-period": "Durée de conservation",
+      "sensitive": "Données sensibles ?",
+      "sensitive-affirmative": "Données sensibles",
+      "identification": "État-civil, identité, données d'identification, images(ex.nom, prénom, adresse, photographie, date et lieu de naissance, etc.)",
+      "personal": "Vie personnelle (ex. habitudes de vie, situation familiale, etc.)",
+      "professional": "Vie professionnelle(ex. CV, situation professionnelle, scolarité, formation, distinctions, diplômes, etc.)",
+      "financial": "Informations d’ordre économique et financier (ex. revenus, situation financière, données bancaires, etc.)",
+      "log": "Données de connexion (ex. adresses Ip, logs, identifiants des terminaux, identifiants de connexion, informations d'horodatage, etc.)",
+      "location": "Données de localisation (ex. déplacements, données GPS, GSM, ...)",
+      "internet": "Internet(ex. cookies, traceurs, données de navigation, mesures d’audience, ...)",
+      "other": "Autres catégories de données"
     }
   },
   "pia": {
@@ -178,7 +404,8 @@
       "preview": "Aperçu",
       "display_action_plan": "Afficher le<br>plan d'action",
       "edition": "Édition",
-      "evaluation": "Évaluation"
+      "evaluation": "Évaluation",
+      "pia": "PIA"
     },
     "attachments": {
       "title": "Pièces jointes",
@@ -220,7 +447,7 @@
   },
   "templates": {
     "pick": "Choisir",
-    "header": "Modèles de PIA"
+    "header": "Modèles de Traitement"
   },
   "knowledge_base": {
     "title": "Base de connaissances",
@@ -306,6 +533,10 @@
         "name": "Recueil du consentement de l'utilisateur du service",
         "description": "Il s'agit de permettre un choix libre, spécifique et éclairé; vérifier que l'une des bases légales du traitement est le consentement, tel que prévu à l'<a target=\"_blank\" href=\"https://www.cnil.fr/fr/reglement-europeen-protection-donnees/chapitre2#Article6\">article 6 du RGPD</a> (obligation légale, sauvegarde de la vie, mission de service public, contrat ou mesures prises avec la personne, intérêt légitime).",
         "source": "WIKI Recueil_du_consentement"
+      },
+      "PIA_LGL_LFC": {
+        "name": "Cycle de vie des données",
+        "description": "Décrivez les différentes étapes qui concerneront les données tout au long de leur durée de conservation."
       },
       "PIA_VAL_DPO": {
         "name": "Avis du délégué à la protection des données",
@@ -821,7 +1052,10 @@
       "1": "À corriger",
       "2": "Améliorable",
       "3": "Acceptable"
-    }
+    },
+    "processing_validated": "Traitement validé",
+    "processing_partialy_validated": "Traitement validé avec réserves",
+    "cancel": "Annuler la validation"
   },
   "help": {
     "title": "Aide",
@@ -977,6 +1211,10 @@
       "content": "<span class='strong'>Attention,</span><br>Êtes-vous sûr de vouloir<br>supprimer ce PIA ?",
       "remove": "Supprimer ce PIA"
     },
+    "remove_processing": {
+      "content": "<span class='strong'>Attention,</span><br>Êtes-vous sûr de vouloir<br>supprimer ce traitement ?",
+      "remove": "Supprimer ce traitement"
+    },
     "remove_pia_folder": {
       "content": "<span class='strong'>Attention,</span><br>Êtes-vous sûr de vouloir<br>supprimer ce dossier ?<p>Les PIAs présentes dans ce dossier seront supprimées</p>",
       "remove": "Supprimer ce dossier"
@@ -1024,6 +1262,7 @@
       "title": "Filtres d'affichage",
       "main_content": "Afficher la section \"Informations du PIA\"",
       "context_content": "Afficher la section \"Contexte\"",
+      "processing_content": "Afficher la section \"Traitement\"",
       "principles_content": "Afficher la section \"Principes fondamentaux\"",
       "risks_content": "Afficher la section \"Risques\"",
       "action_plan_content": " Afficher le plan d'action",
@@ -1059,6 +1298,7 @@
       "3": "Importante",
       "4": "Maximale"
     },
+    "processing": "Traitement",
     "action_plan": {
       "title": "Plan d'action",
       "fundamental_principles": "Principes fondamentaux",

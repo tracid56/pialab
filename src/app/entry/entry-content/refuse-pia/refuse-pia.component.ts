@@ -1,8 +1,6 @@
 import { Component, ElementRef, OnInit, Input } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-
-import { Evaluation } from 'app/entry/entry-content/evaluations/evaluation.model';
 
 import { ModalsService } from 'app/modals/modals.service';
 import { PiaService } from 'app/entry/pia.service';
@@ -44,9 +42,9 @@ export class RefusePIAComponent implements OnInit {
       this.showRejectionReasonButtons = true;
     }
 
-    if (this._piaService.pia.applied_adjustements && this._piaService.pia.rejected_reason
-      && this._piaService.pia.applied_adjustements.length > 0 && this._piaService.pia.rejected_reason.length > 0) {
-      this.modificationsMadeForm.controls['modificationsMade'].patchValue(this._piaService.pia.applied_adjustements);
+    if (this._piaService.pia.applied_adjustments && this._piaService.pia.rejected_reason
+      && this._piaService.pia.applied_adjustments.length > 0 && this._piaService.pia.rejected_reason.length > 0) {
+      this.modificationsMadeForm.controls['modificationsMade'].patchValue(this._piaService.pia.applied_adjustments);
       this.modificationsMadeForm.controls['modificationsMade'].disable();
       if (this._piaService.pia.status === 1) {
         this.showResendValidationButton = true;
@@ -83,7 +81,7 @@ export class RefusePIAComponent implements OnInit {
     this._piaService.saveCurrentPia().subscribe(() => {
       this._piaService.cancelAllValidatedEvaluation().then(() => {
         this._sidStatusService.refusePia(this._piaService).then(() => {
-          this.router.navigate(['entry', this._piaService.pia.id, 'section', 1, 'item', 1]);
+          this.router.navigate(['entry', this._piaService.pia.id, 'section', 3, 'item', 1]);
           this._modalsService.openModal('modal-refuse-pia');
         });
       });
@@ -146,7 +144,7 @@ export class RefusePIAComponent implements OnInit {
     if (userText && typeof userText === 'string') {
       userText = userText.replace(/^\s+/, '').replace(/\s+$/, '');
     }
-    this._piaService.pia.applied_adjustements = userText;
+    this._piaService.pia.applied_adjustments = userText;
     this._piaService.saveCurrentPia().subscribe(() => {
       if (userText && userText.length > 0) {
         this.modificationsMadeForm.controls['modificationsMade'].disable();

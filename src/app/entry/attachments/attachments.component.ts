@@ -2,7 +2,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
-import { AttachmentsService } from 'app/entry/attachments/attachments.service';
+import { AttachmentsService } from './attachments.service';
 import { PiaModel } from '@api/models';
 
 @Component({
@@ -14,7 +14,7 @@ export class AttachmentsComponent implements OnInit {
 
   @Input() pia: PiaModel;
   attachmentForm: FormGroup;
-  dispplayAttachmentButton = false;
+  displayAttachmentButton = false;
 
   constructor(private activatedRoute: ActivatedRoute,
               public _attachmentsService: AttachmentsService) { }
@@ -25,7 +25,7 @@ export class AttachmentsComponent implements OnInit {
     });
     this._attachmentsService.pia = this.pia;
     this._attachmentsService.listAttachments();
-    this.dispplayAttachmentButton = (this.pia.status !== 2 && this.pia.status !== 3);
+    this.displayAttachmentButton = (this.pia.status !== 2 && this.pia.status !== 3);
   }
 
   /**
